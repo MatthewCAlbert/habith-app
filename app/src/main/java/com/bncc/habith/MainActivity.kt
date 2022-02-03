@@ -1,4 +1,4 @@
-package com.bncc.simplenote
+package com.bncc.habith
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
