@@ -1,7 +1,8 @@
-package com.bncc.habith
+package com.bncc.habith.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bncc.habith.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
