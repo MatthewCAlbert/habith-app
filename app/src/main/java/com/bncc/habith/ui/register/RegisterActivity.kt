@@ -11,15 +11,15 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initBinding()
 
         binding.buttonRegister.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            finishAffinity()
         }
 
         binding.textLogin.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }
@@ -27,5 +27,10 @@ class RegisterActivity : AppCompatActivity() {
     private fun initBinding() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

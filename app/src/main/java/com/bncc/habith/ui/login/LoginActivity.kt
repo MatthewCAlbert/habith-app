@@ -36,7 +36,6 @@ class LoginActivity : AppCompatActivity() {
 
         binding.textRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-            finish()
         }
 
         viewModel.isSuccess.observe(this){
