@@ -3,6 +3,7 @@ package com.bncc.habith.ui.register
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import com.bncc.habith.databinding.ActivityRegisterBinding
 import com.bncc.habith.ui.login.LoginActivity
@@ -24,8 +25,17 @@ class RegisterActivity : AppCompatActivity() {
                 && !inputIsEmpty(binding.editTextPassword, binding.inputLayoutPassword,this)
                 && !inputIsEmpty(binding.editTextPasswordRepeat, binding.inputLayoutPasswordRepeat,this)
             ) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finishAffinity()
+                val username = binding.editTextUsername.text.toString()
+                val email = binding.editTextEmail.text.toString()
+                val password = binding.editTextPassword.text.toString()
+                val passwordRepeat = binding.editTextPasswordRepeat.text.toString()
+
+                if (password == passwordRepeat){
+                    startActivity(Intent(this, MainActivity::class.java))
+                    finishAffinity()
+                }else{
+                    Toast.makeText(this, "password doesn't matches!", Toast.LENGTH_SHORT).show()
+                }
             }
         }
 
