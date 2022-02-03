@@ -14,6 +14,7 @@
 
     <string name="input_is_empty_message">input field is still empty!</string>
     <string name="auth_not_matches">Incorrect username or password!</string>
+    <string name="password_not_matches">Password doesn\'t matches!</string>
     <string name="email_label">Email</string>
     <string name="email_placeholder">Email must be valid</string>
     <string name="register_label">Register this account</string>

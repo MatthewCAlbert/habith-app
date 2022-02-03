@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
+import androidx.lifecycle.ViewModelProvider
+import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityRegisterBinding
 import com.bncc.habith.ui.login.LoginActivity
 import com.bncc.habith.ui.main.MainActivity
@@ -13,6 +15,10 @@ import com.bncc.habith.util.InputHelper.inputIsEmpty
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+    private val viewModel: RegisterViewModel by lazy {
+        ViewModelProvider(this).get(RegisterViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -31,11 +37,17 @@ class RegisterActivity : AppCompatActivity() {
                 val passwordRepeat = binding.editTextPasswordRepeat.text.toString()
 
                 if (password == passwordRepeat){
-                    startActivity(Intent(this, MainActivity::class.java))
-                    finishAffinity()
+                    viewModel.register(username, email, password)
                 }else{
-                    Toast.makeText(this, "password doesn't matches!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, R.string.password_not_matches, Toast.LENGTH_SHORT).show()
                 }
+            }
+        }
+
+        viewModel.isSuccess.observe(this){
+            if (it){
+                startActivity(Intent(this, MainActivity::class.java))
+                finishAffinity()
             }
         }
 
