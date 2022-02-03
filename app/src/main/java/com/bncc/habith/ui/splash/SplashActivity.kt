@@ -2,12 +2,12 @@ package com.bncc.habith.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.bncc.habith.databinding.ActivitySplashBinding
-import com.bncc.habith.ui.main.MainActivity
+import com.bncc.habith.ui.login.LoginActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class SplashActivity : AppCompatActivity() {
         initBinding()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 2000) // hold within 2s
     }
