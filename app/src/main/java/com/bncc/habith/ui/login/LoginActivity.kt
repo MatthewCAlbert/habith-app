@@ -27,8 +27,9 @@ class LoginActivity : AppCompatActivity() {
             if (!inputIsEmpty(binding.editTextUsername, binding.inputLayoutUsername, this)
                 && !inputIsEmpty(binding.editTextPassword, binding.inputLayoutPassword, this)
             ) {
-                startActivity(Intent(this, MainActivity::class.java))
-                finish()
+                val username = binding.editTextUsername.text.toString()
+                val password = binding.editTextPassword.text.toString()
+                viewModel.login(username, password)
             }
         }
 
@@ -36,6 +37,14 @@ class LoginActivity : AppCompatActivity() {
             // todo navigate to register activity
         }
 
+        viewModel.isSuccess.observe(this){
+            if (it){
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            }else{
+                Toast.makeText(this, R.string.auth_not_matches, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun setupInput() {
