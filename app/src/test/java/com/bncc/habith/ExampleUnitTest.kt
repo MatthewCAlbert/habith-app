@@ -1,4 +1,4 @@
-package com.bncc.simplenote
+package com.bncc.habith
 
 import org.junit.Test
 

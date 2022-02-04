@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">SimpleNote</string>
+    <string name="app_name">Habith</string>
+    <string name="app_logo">app-logo</string>
 </resources>
