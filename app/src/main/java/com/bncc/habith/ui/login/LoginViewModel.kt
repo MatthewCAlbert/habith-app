@@ -8,9 +8,6 @@ class LoginViewModel : ViewModel() {
     val isSuccess = MutableLiveData<Boolean>()
 
     fun login(username: String, password: String){
-        if (username == "test" && password == "test123")
-            isSuccess.postValue(true)
-        else
-            isSuccess.postValue(false)
+        isSuccess.value = username == "test" && password == "test123"
     }
 }
