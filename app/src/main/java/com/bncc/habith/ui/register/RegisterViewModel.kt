@@ -8,6 +8,6 @@ class RegisterViewModel: ViewModel() {
     val isSuccess = MutableLiveData<Boolean>()
 
     fun register(username: String, email: String, password: String){
-        isSuccess.postValue(true)
+        isSuccess.value = true
     }
 }
