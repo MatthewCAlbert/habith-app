@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.ViewModelProvider
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityLoginBinding
 import com.bncc.habith.ui.main.MainActivity
@@ -37,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        viewModel.isSuccess.observe(this){
+        viewModel.getIsSuccess().observe(this){
             if (it){
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()

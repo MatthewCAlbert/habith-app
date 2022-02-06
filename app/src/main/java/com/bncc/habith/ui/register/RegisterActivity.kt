@@ -1,23 +1,19 @@
 package com.bncc.habith.ui.register
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.ViewModelProvider
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityRegisterBinding
-import com.bncc.habith.ui.login.LoginActivity
 import com.bncc.habith.ui.main.MainActivity
-import com.bncc.habith.util.InputHelper
 import com.bncc.habith.util.InputHelper.inputIsEmpty
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private val viewModel: RegisterViewModel by lazy {
-        ViewModelProvider(this).get(RegisterViewModel::class.java)
-    }
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.isSuccess.observe(this){
+        viewModel.getIsSuccess().observe(this){
             if (it){
                 startActivity(Intent(this, MainActivity::class.java))
                 finishAffinity()

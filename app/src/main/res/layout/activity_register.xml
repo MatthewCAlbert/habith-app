@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:text="Register a new account"
+        android:text="@string/register_title"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,8 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:text="Create, track and add reminders to build new habits,
-and join other users on improving their personal life!"
+        android:text="@string/register_subtitle"
         app:layout_constraintTop_toBottomOf="@id/text_title" />
 
     <com.google.android.material.textfield.TextInputLayout
