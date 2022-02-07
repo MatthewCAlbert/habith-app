@@ -6,10 +6,10 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.ViewModelProvider
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityLoginBinding
 import com.bncc.habith.ui.main.MainActivity
+import com.bncc.habith.ui.register.RegisterActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
 
 class LoginActivity : AppCompatActivity() {
@@ -33,10 +33,10 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.textRegister.setOnClickListener {
-            // todo navigate to register activity
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        viewModel.isSuccess.observe(this){
+        viewModel.getIsSuccess().observe(this){
             if (it){
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
