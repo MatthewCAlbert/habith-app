@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">Habith</string>
     <string name="app_logo">app-logo</string>
+    <string name="username_label">Username</string>
+    <string name="username_placeholder">Input your username</string>
+    <string name="username_placeholder_2">Must be at least 3 characters</string>
+    <string name="password_label">Password</string>
+    <string name="password_placeholder">Input your password</string>
+    <string name="password_placeholder_2">Must be at least 6 characters</string>
+    <string name="password_placeholder_3">Password must match</string>
+    <string name="login_label">Login with this account</string>
+    <string name="register_cta">Don\'t have an account? <b>Register here</b></string>
+    <string name="login_cta">Already have an account? <b>Login here</b></string>
+
+    <string name="input_is_empty_message">input field is still empty!</string>
+    <string name="auth_not_matches">Incorrect username or password!</string>
+    <string name="password_not_matches">Password doesn\'t matches!</string>
+    <string name="email_label">Email</string>
+    <string name="email_placeholder">Email must be valid</string>
+    <string name="register_label">Register this account</string>
+    <string name="register_subtitle">Create, track and add reminders to build new habits, and join other users on improving their personal life!</string>
+    <string name="register_title">Register a new account</string>
 </resources>

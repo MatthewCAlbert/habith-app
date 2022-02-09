@@ -12,6 +12,12 @@
         android:theme="@style/Theme.SimpleNote"
         tools:ignore="AllowBackup">
         <activity
+            android:name=".ui.register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.addedit.AddEditActivity"
             android:exported="false" />
         <activity

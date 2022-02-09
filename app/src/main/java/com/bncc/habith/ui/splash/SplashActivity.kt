@@ -2,11 +2,12 @@ package com.bncc.habith.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.bncc.habith.databinding.ActivitySplashBinding
+import com.bncc.habith.ui.login.LoginActivity
 import com.bncc.habith.ui.addedit.AddEditActivity
 import com.bncc.habith.ui.main.MainActivity
 
@@ -19,6 +20,7 @@ class SplashActivity : AppCompatActivity() {
         initBinding()
 
         Handler(Looper.getMainLooper()).postDelayed({
+            startActivity(Intent(this, LoginActivity::class.java))
 //            var intent = Intent(this, AddEditActivity::class.java).apply {
 //                putExtra("habitName", "Do homework")
 //                putExtra("habitCats", "Education")
