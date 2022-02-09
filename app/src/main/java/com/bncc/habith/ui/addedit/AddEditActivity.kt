@@ -15,12 +15,14 @@ import java.util.*
 
 class AddEditActivity : AppCompatActivity() {
     private lateinit var addEditBinding: ActivityAddEditBinding
+    var submitTxt: String? = "Habit created successfully"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addEditBinding = ActivityAddEditBinding.inflate(layoutInflater)
         val view = addEditBinding.root
         setContentView(view)
-        
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val extras = intent.extras
         prepareActivity(extras)
 
@@ -130,7 +132,7 @@ class AddEditActivity : AppCompatActivity() {
         }
 
         addEditBinding.btnSubmit.setOnClickListener {
-            Toast.makeText(this, "Info Submitted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, submitTxt, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -149,6 +151,7 @@ class AddEditActivity : AppCompatActivity() {
             addEditBinding.tvTargetType.setText(extras.getString("targetType", "None"))
             addEditBinding.etTargetNum.setText(extras.getString("targetNum", ""))
             addEditBinding.btnSubmit.text = "Update habit info"
+            submitTxt = ""
         }
     }
 }
