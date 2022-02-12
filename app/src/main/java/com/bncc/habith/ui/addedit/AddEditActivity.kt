@@ -2,122 +2,78 @@ package com.bncc.habith.ui.addedit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityAddEditBinding
+import com.bncc.habith.util.extension.createHandleDatePicker
+import com.bncc.habith.util.extension.createTimePicker
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
-import java.text.SimpleDateFormat
-import java.util.*
 
 class AddEditActivity : AppCompatActivity() {
+
     private lateinit var addEditBinding: ActivityAddEditBinding
+    private val viewModel: AddEditViewModel by viewModels()
+
+    private lateinit var timePickerStart: MaterialTimePicker
+    private lateinit var timePickerEnd: MaterialTimePicker
+    private lateinit var datePickerStart: MaterialDatePicker<Long>
+    private lateinit var datePickerEnd: MaterialDatePicker<Long>
+
     var submitTxt: String? = "Habit created successfully"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        initBinding()
+        prepareActivity()
+        setupView()
+        subscribeLiveData()
+    }
+
+    private fun initBinding() {
         addEditBinding = ActivityAddEditBinding.inflate(layoutInflater)
-        val view = addEditBinding.root
-        setContentView(view)
+        setContentView(addEditBinding.root)
+    }
+
+    private fun setupView() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        val extras = intent.extras
-        prepareActivity(extras)
+        timePickerStart = createTimePicker("Select start time",
+            onGetResult = {
+                viewModel.onTimeSelected(it, true)
+            },
+            onCancel = {
+                viewModel.onTimeCanceled(true)
+            }
+        )
+        timePickerEnd = createTimePicker("Select end time",
+            onGetResult = {
+                viewModel.onTimeSelected(it, false)
+            },
+            onCancel = {
+                viewModel.onTimeCanceled(false)
+            }
+        )
 
-        //datePickers
-        var dateTimeStr = ""
-
-        val datePickerStart =
-            MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select start date")
-                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                .build()
-
-        val datePickerEnd =
-            MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select end date")
-                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
-                .build()
-
-        //timePickers
-        var timeStr = ""
-
-        val timePickerStart =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Select start time")
-                .build()
-
-        val timePickerEnd =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Select end time")
-                .build()
-
-        datePickerStart.addOnPositiveButtonClickListener {
-            val dateFormatter = SimpleDateFormat("dd/MM/yy")
-            val date = dateFormatter.format(Date(it))
-            dateTimeStr = date
-            timePickerStart.show(supportFragmentManager, "TimePicker")
-        }
-
-        datePickerEnd.addOnPositiveButtonClickListener {
-            val dateFormatter = SimpleDateFormat("dd/MM/yy")
-            val date = dateFormatter.format(Date(it))
-            dateTimeStr = date
-            timePickerEnd.show(supportFragmentManager, "TimePicker")
-        }
-
-        timePickerStart.addOnPositiveButtonClickListener {
-            val hour = timePickerStart.hour
-            val minute = timePickerStart.minute
-
-            val formattedTime =
-                if(minute < 10)
-                    "${hour}:0${minute}"
-                else
-                    "${hour}:${minute}"
-
-            timeStr = formattedTime
-            dateTimeStr += ", $timeStr"
-            addEditBinding.etHabitStartDateTime.setText(dateTimeStr)
-        }
-
-        timePickerEnd.addOnPositiveButtonClickListener {
-            val hour = timePickerEnd.hour
-            val minute = timePickerEnd.minute
-
-            val formattedTime =
-                if(minute < 10)
-                    "${hour}:0${minute}"
-                else
-                    "${hour}:${minute}"
-
-            timeStr = formattedTime
-            dateTimeStr += ", $timeStr"
-            addEditBinding.etHabitEndDateTime.setText(dateTimeStr)
-        }
-
-        timePickerStart.addOnNegativeButtonClickListener {
-            datePickerStart.show(supportFragmentManager, "DatePicker")
-        }
-
-        timePickerEnd.addOnNegativeButtonClickListener {
-            datePickerEnd.show(supportFragmentManager, "DatePicker")
-        }
+        datePickerStart = createHandleDatePicker("Select start date",
+            onGetResult = {
+                viewModel.onDateSelected(it, true)
+            }
+        )
+        datePickerEnd = createHandleDatePicker("Select end date",
+            onGetResult = {
+                viewModel.onDateSelected(it, false)
+            }
+        )
 
         addEditBinding.etHabitStartDateTime.setOnClickListener {
-            dateTimeStr = ""
-            timeStr = ""
-            datePickerStart.show(supportFragmentManager, "DatePicker")
+            viewModel.onClickDateTimeEditText(true)
         }
 
         addEditBinding.etHabitEndDateTime.setOnClickListener {
-            dateTimeStr = ""
-            timeStr = ""
-            datePickerEnd.show(supportFragmentManager, "DatePicker")
+            viewModel.onClickDateTimeEditText(false)
         }
 
         val targetTypes = listOf("None", "Equal", "Less than equal", "More than equal")
@@ -136,7 +92,33 @@ class AddEditActivity : AppCompatActivity() {
         }
     }
 
-    fun prepareActivity(extras: Bundle?){
+    private fun subscribeLiveData() {
+        with(viewModel) {
+            doShowDatePicker().observe(this@AddEditActivity) {
+                if (it) {
+                    datePickerStart.show(supportFragmentManager, "DatePicker")
+                } else {
+                    datePickerEnd.show(supportFragmentManager, "DatePicker")
+                }
+            }
+            doShowTimePicker().observe(this@AddEditActivity) {
+                if (it) {
+                    timePickerStart.show(supportFragmentManager, "TimePicker")
+                } else {
+                    timePickerEnd.show(supportFragmentManager, "TimePicker")
+                }
+            }
+            doSetStartDateTime().observe(this@AddEditActivity) {
+                addEditBinding.etHabitStartDateTime.setText(it)
+            }
+            doSetEndDateTime().observe(this@AddEditActivity) {
+                addEditBinding.etHabitEndDateTime.setText(it)
+            }
+        }
+    }
+
+    private fun prepareActivity(){
+        val extras = intent.extras
         if(extras == null){
             addEditBinding.tvTitle.text = "Add New Habit"
             addEditBinding.btnSubmit.text = "Create this habit"
