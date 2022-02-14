@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityRegisterBinding
-import com.bncc.habith.ui.main.MainActivity
+import com.bncc.habith.ui.home.HomeActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
 
 class RegisterActivity : AppCompatActivity() {
@@ -42,7 +42,7 @@ class RegisterActivity : AppCompatActivity() {
 
         viewModel.getIsSuccess().observe(this){
             if (it){
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, HomeActivity::class.java))
                 finishAffinity()
             }
         }

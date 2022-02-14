@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityLoginBinding
-import com.bncc.habith.ui.main.MainActivity
+import com.bncc.habith.ui.home.HomeActivity
 import com.bncc.habith.ui.register.RegisterActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
 
@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
 
         viewModel.getIsSuccess().observe(this){
             if (it){
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             }else{
                 Toast.makeText(this, R.string.auth_not_matches, Toast.LENGTH_SHORT).show()

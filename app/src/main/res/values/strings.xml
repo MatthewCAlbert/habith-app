@@ -20,4 +20,5 @@
     <string name="register_label">Register this account</string>
     <string name="register_subtitle">Create, track and add reminders to build new habits, and join other users on improving their personal life!</string>
     <string name="register_title">Register a new account</string>
+    <string name="fab_label">fab-to-edit</string>
 </resources>
