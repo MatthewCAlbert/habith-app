@@ -36,10 +36,26 @@ class AllFragment : Fragment() {
             swipeRefreshAll.setOnRefreshListener {
                 viewModel.fetchHabith()
             }
+
+            buttonNext.setOnClickListener {
+                viewModel.pickDate(1)
+            }
+
+            buttonPrev.setOnClickListener {
+                viewModel.pickDate(-1)
+            }
+
+            textDate.setOnClickListener {
+                viewModel.pickDate(requireContext())
+            }
         }
 
         viewModel.getHabith().observe(requireActivity()) {
             loadHabith(it!!)
+        }
+
+        viewModel.getDate().observe(requireActivity()) {
+            binding.textDate.text = it
         }
 
         return binding.root
