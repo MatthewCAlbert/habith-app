@@ -2,11 +2,10 @@ package com.bncc.habith.ui.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bncc.habith.databinding.ActivityHomeBinding
-import com.bncc.habith.ui.home.fragments.AllFragment
-import com.bncc.habith.ui.home.fragments.OngoingFragment
+import com.bncc.habith.ui.home.fragment.AllFragment
+import com.bncc.habith.ui.home.fragment.OngoingFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeActivity : AppCompatActivity() {
