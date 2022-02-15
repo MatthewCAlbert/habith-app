@@ -11,7 +11,9 @@ import com.bncc.habith.databinding.ActivityLoginBinding
 import com.bncc.habith.ui.main.MainActivity
 import com.bncc.habith.ui.register.RegisterActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val viewModel: LoginViewModel by viewModels()
