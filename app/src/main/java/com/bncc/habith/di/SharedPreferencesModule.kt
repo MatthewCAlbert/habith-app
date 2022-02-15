@@ -2,7 +2,7 @@ package com.bncc.habith.di
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.bncc.habith.util.Constant.PREF_NAME
+import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,5 +17,5 @@ object SharedPreferencesModule {
     @Singleton
     @Provides
     fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences =
-        context.getSharedPreferences(PREF_NAME, 0)
+        PreferenceManager.getDefaultSharedPreferences(context)
 }
