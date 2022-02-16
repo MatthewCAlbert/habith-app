@@ -1,8 +1,12 @@
-package com.bncc.habith.data.remote
+package com.bncc.habith.data
 
+import com.bncc.habith.data.remote.network.ApiService
 import com.bncc.habith.data.remote.response.HabithResponse
+import javax.inject.Inject
 
-class HabithRepository {
+class HabithRepository @Inject constructor(
+    private val apiService: ApiService
+) {
 
     suspend fun getHabithAll(): ArrayList<HabithResponse>{
         val response : ArrayList<HabithResponse> = arrayListOf()

@@ -11,7 +11,9 @@ import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.FragmentOngoingBinding
 import com.bncc.habith.ui.home.adapter.HabithAdapter
 import com.bncc.habith.ui.home.viewmodel.OngoingViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OngoingFragment : Fragment() {
 
     private lateinit var binding: FragmentOngoingBinding

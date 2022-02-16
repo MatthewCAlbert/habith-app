@@ -7,7 +7,9 @@ import com.bncc.habith.databinding.ActivityHomeBinding
 import com.bncc.habith.ui.home.fragment.AllFragment
 import com.bncc.habith.ui.home.fragment.OngoingFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
