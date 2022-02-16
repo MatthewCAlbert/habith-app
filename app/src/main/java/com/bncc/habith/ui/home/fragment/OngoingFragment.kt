@@ -21,10 +21,21 @@ class OngoingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentOngoingBinding.inflate(layoutInflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.fetchHabith()
+
+        initView()
+        subscribeLiveData()
+    }
+
+    private fun initView() {
         habithAdapter = HabithAdapter {
             //todo navigate to DetailActivity
         }
@@ -37,12 +48,12 @@ class OngoingFragment : Fragment() {
                 viewModel.fetchHabith()
             }
         }
+    }
 
+    private fun subscribeLiveData() {
         viewModel.getHabith().observe(requireActivity()) {
             loadHabith(it!!)
         }
-
-        return binding.root
     }
 
     private fun loadHabith(habits: List<HabithResponse>) {

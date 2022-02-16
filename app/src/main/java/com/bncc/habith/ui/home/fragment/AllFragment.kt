@@ -21,10 +21,22 @@ class AllFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAllBinding.inflate(layoutInflater, container, false)
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         viewModel.fetchHabith()
+
+        initView()
+        subscribeLiveData()
+    }
+
+    private fun initView(){
         habithAdapter = HabithAdapter {
             //todo navigate to DetailActivity
         }
@@ -49,7 +61,9 @@ class AllFragment : Fragment() {
                 viewModel.pickDate(requireContext())
             }
         }
+    }
 
+    private fun subscribeLiveData(){
         viewModel.getHabith().observe(requireActivity()) {
             loadHabith(it!!)
         }
@@ -57,8 +71,6 @@ class AllFragment : Fragment() {
         viewModel.getDate().observe(requireActivity()) {
             binding.textDate.text = it
         }
-
-        return binding.root
     }
 
     private fun loadHabith(habits: List<HabithResponse>) {

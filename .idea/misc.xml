@@ -3,15 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/drawable/ic_add.xml" value="0.108" />
-        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_home.xml" value="0.1597222222222222" />
-        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
         <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
-        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_register.xml" value="0.15753424657534246" />
         <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_splash.xml" value="0.1796875" />
-        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/fragment_all.xml" value="0.22" />
-        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/fragment_ongoing.xml" value="0.1597222222222222" />
-        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/item_ongoing_list.xml" value="0.1597222222222222" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/fragment_all.xml" value="0.1574074074074074" />
       </map>
     </option>
   </component>

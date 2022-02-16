@@ -1,5 +1,6 @@
 package com.bncc.habith.ui.home.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,5 +23,5 @@ class OngoingViewModel : ViewModel() {
         }
     }
 
-    fun getHabith(): MutableLiveData<List<HabithResponse>> = habithLiveData
+    fun getHabith(): LiveData<List<HabithResponse>> = habithLiveData
 }
