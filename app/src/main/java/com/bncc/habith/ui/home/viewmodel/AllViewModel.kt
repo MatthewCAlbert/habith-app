@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bncc.habith.data.HabithRepository
+import com.bncc.habith.data.repository.HabithRepositoryImpl
 import com.bncc.habith.data.remote.response.HabithResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllViewModel @Inject constructor(
-    private val repository: HabithRepository
+    private val repository: HabithRepositoryImpl
 ) : ViewModel() {
 
     private val c = Calendar.getInstance()
