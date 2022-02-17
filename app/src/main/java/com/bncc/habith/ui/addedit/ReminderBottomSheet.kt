@@ -44,7 +44,7 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
         reminderBinding.btnDay4.setOnCheckedChangeListener(this)
         reminderBinding.btnDay5.setOnCheckedChangeListener(this)
         reminderBinding.btnDay6.setOnCheckedChangeListener(this)
-        
+
         val timePicker = createTimePicker(
             R.string.reminder_time_title.toString(),
             onGetResult = {
