@@ -5,82 +5,64 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.fragment.app.viewModels
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ItemReminderSheetBinding
+import com.bncc.habith.util.extension.createTimePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.checkbox.MaterialCheckBox
-import com.google.android.material.switchmaterial.SwitchMaterial
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 
 class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedChangeListener {
+    private lateinit var reminderBinding: ItemReminderSheetBinding
+    private val viewModel: ReminderBottomSheetViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.item_reminder_sheet, container, false)
+    ): View {
+        reminderBinding = ItemReminderSheetBinding.inflate(layoutInflater, container, false)
+        return reminderBinding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val typeSwitch = view.findViewById<SwitchMaterial>(R.id.switch_repeatType)
-        val type1 = view.findViewById<LinearLayout>(R.id.layout_repeatType1)
-        val etDayNum = view.findViewById<EditText>(R.id.et_repeatDayNum)
-        val type2 = view.findViewById<LinearLayout>(R.id.layout_repeatType2)
-        val btnTime = view.findViewById<Button>(R.id.btn_repeatTime)
-        val btnDay7 = view.findViewById<MaterialCheckBox>(R.id.btn_day7)
-        val btnDay1 = view.findViewById<MaterialCheckBox>(R.id.btn_day1)
-        val btnDay2 = view.findViewById<MaterialCheckBox>(R.id.btn_day2)
-        val btnDay3 = view.findViewById<MaterialCheckBox>(R.id.btn_day3)
-        val btnDay4 = view.findViewById<MaterialCheckBox>(R.id.btn_day4)
-        val btnDay5 = view.findViewById<MaterialCheckBox>(R.id.btn_day5)
-        val btnDay6 = view.findViewById<MaterialCheckBox>(R.id.btn_day6)
-        val btnSubmit = view.findViewById<Button>(R.id.btn_submitReminder)
 
-        typeSwitch.setOnCheckedChangeListener { button, isChecked ->
+        reminderBinding.switchRepeatType.setOnCheckedChangeListener { button, isChecked ->
             if(isChecked){
-                type1.visibility = View.GONE
-                type2.visibility = View.VISIBLE
+                reminderBinding.layoutRepeatType1.visibility = View.GONE
+                reminderBinding.layoutRepeatType2.visibility = View.VISIBLE
             }else{
-                type1.visibility = View.VISIBLE
-                type2.visibility = View.GONE
+                reminderBinding.layoutRepeatType1.visibility = View.VISIBLE
+                reminderBinding.layoutRepeatType2.visibility = View.GONE
             }
         }
 
-        btnDay7.setOnCheckedChangeListener(this)
-        btnDay1.setOnCheckedChangeListener(this)
-        btnDay2.setOnCheckedChangeListener(this)
-        btnDay3.setOnCheckedChangeListener(this)
-        btnDay4.setOnCheckedChangeListener(this)
-        btnDay5.setOnCheckedChangeListener(this)
-        btnDay6.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay7.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay1.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay2.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay3.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay4.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay5.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay6.setOnCheckedChangeListener(this)
+        
+        val timePicker = createTimePicker(
+            R.string.reminder_time_title.toString(),
+            onGetResult = {
+                reminderBinding.btnRepeatTime.text = it
+            },
+            onCancel = {
 
-        val timePicker =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Select reminder time")
-                .build()
+            }
+        )
 
-        timePicker.addOnPositiveButtonClickListener {
-            val hour = timePicker.hour
-            val minute = timePicker.minute
-            val timeStr =
-                if (minute < 10) {
-                    "${hour}:0${minute}"
-                } else {
-                    "${hour}:${minute}"
-                }
-            btnTime.text = timeStr
-        }
-
-        btnTime.setOnClickListener {
+        reminderBinding.btnRepeatTime.setOnClickListener {
             timePicker.show(parentFragmentManager, "TimePicker")
         }
 
-        btnSubmit.setOnClickListener {
+        reminderBinding.btnSubmitReminder.setOnClickListener {
             dismiss()
         }
     }
-
 
     companion object {
         const val TAG = "ReminderBottomSheet"
