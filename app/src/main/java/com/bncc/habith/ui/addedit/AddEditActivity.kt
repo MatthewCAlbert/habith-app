@@ -2,6 +2,7 @@ package com.bncc.habith.ui.addedit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -120,11 +121,11 @@ class AddEditActivity : AppCompatActivity() {
     private fun prepareActivity(){
         val extras = intent.extras
         if(extras == null){
-            addEditBinding.tvTitle.text = R.string.add_habit_title.toString()
-            addEditBinding.btnSubmit.text = R.string.add_habit_submit.toString()
+            addEditBinding.tvTitle.text = getString(R.string.add_habit_title)
+            addEditBinding.btnSubmit.text = getString(R.string.add_habit_submit)
             submitTxt = R.string.add_habit_success.toString()
         }else{
-            addEditBinding.tvTitle.text = R.string.edit_habit_title.toString()
+            addEditBinding.tvTitle.text = getString(R.string.edit_habit_title)
             addEditBinding.etHabitName.setText(extras.getString("habitName", ""))
             addEditBinding.etHabitCats.setText(extras.getString("habitCats", ""))
             addEditBinding.etHabitStartDateTime.setText(extras.getString("startDateTime", ""))
@@ -133,8 +134,8 @@ class AddEditActivity : AppCompatActivity() {
             addEditBinding.etHabitDesc.setText(extras.getString("habitDesc", ""))
             addEditBinding.tvTargetType.setText(extras.getString("targetType", "None"))
             addEditBinding.etTargetNum.setText(extras.getString("targetNum", ""))
-            addEditBinding.btnSubmit.text = R.string.edit_habit_success.toString()
-            submitTxt = R.string.edit_habit_success.toString()
+            addEditBinding.btnSubmit.text = getString(R.string.edit_habit_submit)
+            submitTxt = getString(R.string.edit_habit_success)
         }
     }
 }
