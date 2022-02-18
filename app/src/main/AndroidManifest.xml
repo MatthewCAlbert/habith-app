@@ -11,6 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleNote"
         tools:ignore="AllowBackup">
+        <activity android:name=".ui.detail.DetailActivity"
+            android:exported="false"/>
         <activity
             android:name=".ui.register.RegisterActivity"
             android:exported="false" />
@@ -22,7 +24,11 @@
             android:exported="false" />
         <activity
             android:name=".ui.addedit.AddEditActivity"
-            android:exported="false" />
+            android:parentActivityName=".ui.detail.DetailActivity"
+            android:exported="false">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ui.detail.DetailActivity"/>
+        </activity>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true">

@@ -34,4 +34,7 @@
     <string name="end_date_picker">Select end date</string>
     <string name="end_time_picker">Select end time</string>
     <string name="reminder_time_title">Select reminder time</string>
+
+    <string name="detail_start_habit">Start Habit</string>
+    <string name="detail_end_habit">End Habit</string>
 </resources>
