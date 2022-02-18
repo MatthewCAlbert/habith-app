@@ -11,7 +11,9 @@ import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.FragmentAllBinding
 import com.bncc.habith.ui.home.adapter.HabithAdapter
 import com.bncc.habith.ui.home.viewmodel.AllViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AllFragment : Fragment() {
 
     private lateinit var binding: FragmentAllBinding

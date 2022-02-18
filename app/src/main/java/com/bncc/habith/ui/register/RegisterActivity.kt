@@ -10,7 +10,9 @@ import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityRegisterBinding
 import com.bncc.habith.ui.home.HomeActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
     private val viewModel: RegisterViewModel by viewModels()
