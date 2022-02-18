@@ -1,5 +1,9 @@
 package com.bncc.habith.data.remote.response
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class HabithResponse(
     val id: String,
     val userId: String,
@@ -15,4 +19,4 @@ data class HabithResponse(
     val history: List<HabithHistoryResponse>?,
     val created_at: String,
     val updated_at: String
-)
+): Parcelable

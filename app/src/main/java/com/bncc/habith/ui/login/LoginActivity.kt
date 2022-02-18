@@ -5,10 +5,11 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityLoginBinding
-import com.bncc.habith.ui.home.HomeActivity
+import com.bncc.habith.ui.home.view.HomeActivity
 import com.bncc.habith.ui.register.RegisterActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
                 val username = binding.editTextUsername.text.toString()
                 val password = binding.editTextPassword.text.toString()
                 viewModel.login(username, password)
+                showLoading()
             }
         }
 
@@ -43,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(Intent(this, HomeActivity::class.java))
                 finish()
             }else{
+                hideLoading()
                 Toast.makeText(this, R.string.auth_not_matches, Toast.LENGTH_SHORT).show()
             }
         }
@@ -65,5 +68,17 @@ class LoginActivity : AppCompatActivity() {
     private fun initBinding() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        hideLoading()
     }
+
+    private fun hideLoading() = with(binding){
+        buttonLogin.isEnabled = true
+        loading.isVisible = false
+    }
+
+    private fun showLoading() = with(binding){
+        buttonLogin.isEnabled = false
+        loading.isVisible = true
+    }
+
 }

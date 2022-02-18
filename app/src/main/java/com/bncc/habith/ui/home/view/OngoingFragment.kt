@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.home.fragment
+package com.bncc.habith.ui.home.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
