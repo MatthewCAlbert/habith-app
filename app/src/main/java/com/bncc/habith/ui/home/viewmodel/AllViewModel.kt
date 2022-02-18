@@ -7,15 +7,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bncc.habith.data.remote.HabithRepository
+import com.bncc.habith.data.repository.HabithRepositoryImpl
 import com.bncc.habith.data.remote.response.HabithResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class AllViewModel : ViewModel() {
-
-    private val repository = HabithRepository()
+@HiltViewModel
+class AllViewModel @Inject constructor(
+    private val repository: HabithRepositoryImpl
+) : ViewModel() {
 
     private val c = Calendar.getInstance()
 
@@ -30,7 +33,7 @@ class AllViewModel : ViewModel() {
 
     fun fetchHabith() {
         viewModelScope.launch {
-            val response = repository.getHabithOngoing()
+            val response = repository.getHabithAll()
 
             if (response.isNotEmpty())
                 habithLiveData.value = response

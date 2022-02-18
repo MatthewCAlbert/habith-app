@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bncc.habith.databinding.ActivitySplashBinding
 import com.bncc.habith.ui.detail.DetailActivity
 import com.bncc.habith.ui.login.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
