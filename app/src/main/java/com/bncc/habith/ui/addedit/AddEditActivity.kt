@@ -2,7 +2,6 @@ package com.bncc.habith.ui.addedit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -123,7 +122,7 @@ class AddEditActivity : AppCompatActivity() {
         if(extras == null){
             addEditBinding.tvTitle.text = getString(R.string.add_habit_title)
             addEditBinding.btnSubmit.text = getString(R.string.add_habit_submit)
-            submitTxt = R.string.add_habit_success.toString()
+            submitTxt = getString(R.string.add_habit_success)
         }else{
             addEditBinding.tvTitle.text = getString(R.string.edit_habit_title)
             addEditBinding.etHabitName.setText(extras.getString("habitName", ""))
