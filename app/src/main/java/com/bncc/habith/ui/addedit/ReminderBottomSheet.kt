@@ -4,75 +4,99 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
+import android.widget.*
+import androidx.fragment.app.viewModels
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ItemReminderSheetBinding
+import com.bncc.habith.util.extension.createTimePicker
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.switchmaterial.SwitchMaterial
-import com.google.android.material.timepicker.MaterialTimePicker
-import com.google.android.material.timepicker.TimeFormat
 
-class ReminderBottomSheet : BottomSheetDialogFragment(), View.OnClickListener {
+class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnCheckedChangeListener {
+    private lateinit var reminderBinding: ItemReminderSheetBinding
+    private val viewModel: ReminderBottomSheetViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.item_reminder_sheet, container, false)
+    ): View {
+        reminderBinding = ItemReminderSheetBinding.inflate(layoutInflater, container, false)
+        return reminderBinding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val typeSwitch = view.findViewById<SwitchMaterial>(R.id.switch_repeatType)
-        val type1 = view.findViewById<LinearLayout>(R.id.layout_repeatType1)
-        val etDayNum = view.findViewById<EditText>(R.id.et_repeatDayNum)
-        val type2 = view.findViewById<LinearLayout>(R.id.layout_repeatType2)
-        val btnSun = view.findViewById<Button>(R.id.btn_day7)
-        val btnMon = view.findViewById<Button>(R.id.btn_day1)
-        val btnTue = view.findViewById<Button>(R.id.btn_day2)
-        val btnWed = view.findViewById<Button>(R.id.btn_day3)
-        val btnThu = view.findViewById<Button>(R.id.btn_day4)
-        val btnFri = view.findViewById<Button>(R.id.btn_day5)
-        val btnSat = view.findViewById<Button>(R.id.btn_day6)
-        val btnTime = view.findViewById<Button>(R.id.btn_repeatTime)
-        val btnSubmit = view.findViewById<Button>(R.id.btn_submitReminder)
 
-        typeSwitch.setOnCheckedChangeListener { button, isChecked ->
+        reminderBinding.switchRepeatType.setOnCheckedChangeListener { button, isChecked ->
             if(isChecked){
-                type1.visibility = View.GONE
-                type2.visibility = View.VISIBLE
+                reminderBinding.layoutRepeatType1.visibility = View.GONE
+                reminderBinding.layoutRepeatType2.visibility = View.VISIBLE
             }else{
-                type1.visibility = View.VISIBLE
-                type2.visibility = View.GONE
+                reminderBinding.layoutRepeatType1.visibility = View.VISIBLE
+                reminderBinding.layoutRepeatType2.visibility = View.GONE
             }
         }
 
-        //are buttons a good choice for day picker?
-        btnSun.setOnClickListener(this)
-        btnMon.setOnClickListener(this)
-        btnTue.setOnClickListener(this)
-        btnWed.setOnClickListener(this)
-        btnThu.setOnClickListener(this)
-        btnFri.setOnClickListener(this)
-        btnSat.setOnClickListener(this)
+        reminderBinding.btnDay7.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay1.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay2.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay3.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay4.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay5.setOnCheckedChangeListener(this)
+        reminderBinding.btnDay6.setOnCheckedChangeListener(this)
 
-        val timePicker =
-            MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setTitleText("Select reminder time")
-                .build()
+        val timePicker = createTimePicker(
+            R.string.reminder_time_title.toString(),
+            onGetResult = {
+                reminderBinding.btnRepeatTime.text = it
+            },
+            onCancel = {
 
-        btnTime.setOnClickListener {
+            }
+        )
+
+        reminderBinding.btnRepeatTime.setOnClickListener {
             timePicker.show(parentFragmentManager, "TimePicker")
         }
-    }
 
+        reminderBinding.btnSubmitReminder.setOnClickListener {
+            dismiss()
+        }
+    }
 
     companion object {
         const val TAG = "ReminderBottomSheet"
     }
 
-    override fun onClick(p0: View?) {
-        TODO("Not yet implemented")
+    override fun onCheckedChanged(view: CompoundButton, isChecked: Boolean) {
+        if(view.id == R.id.btn_day7){
+            if(isChecked){
+                Toast.makeText(context, "Sunday selected", Toast.LENGTH_SHORT).show()
+            }
+        }else if(view.id == R.id.btn_day1){
+            if(isChecked){
+                Toast.makeText(context, "Monday selected", Toast.LENGTH_SHORT).show()
+            }
+        }else if(view.id == R.id.btn_day2){
+            if(isChecked){
+                Toast.makeText(context, "Tuesday selected", Toast.LENGTH_SHORT).show()
+            }
+        }else if(view.id == R.id.btn_day3){
+            if(isChecked){
+                Toast.makeText(context, "Wednesday selected", Toast.LENGTH_SHORT).show()
+            }
+        }else if(view.id == R.id.btn_day4){
+            if(isChecked){
+                Toast.makeText(context, "Thursday selected", Toast.LENGTH_SHORT).show()
+            }
+        }else if(view.id == R.id.btn_day5){
+            if(isChecked){
+                Toast.makeText(context, "Friday selected", Toast.LENGTH_SHORT).show()
+            }
+        }else if(view.id == R.id.btn_day6){
+            if(isChecked){
+                Toast.makeText(context, "Saturday selected", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
