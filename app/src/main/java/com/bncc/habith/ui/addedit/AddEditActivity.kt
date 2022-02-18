@@ -137,4 +137,9 @@ class AddEditActivity : AppCompatActivity() {
             submitTxt = getString(R.string.edit_habit_success)
         }
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
 }
