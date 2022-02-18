@@ -7,8 +7,8 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.bncc.habith.databinding.ActivitySplashBinding
+import com.bncc.habith.ui.detail.DetailActivity
 import com.bncc.habith.ui.login.LoginActivity
-import com.bncc.habith.ui.addedit.AddEditActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -19,7 +19,8 @@ class SplashActivity : AppCompatActivity() {
         initBinding()
 
         Handler(Looper.getMainLooper()).postDelayed({
-//            var intent = Intent(this, AddEditActivity::class.java).apply {
+            startActivity(Intent(this, LoginActivity::class.java))
+//            val intent = Intent(this, DetailActivity::class.java).apply {
 //                putExtra("habitName", "Do homework")
 //                putExtra("habitCats", "Education")
 //                putExtra("startDateTime", "07/02/22, 21:35")
@@ -30,7 +31,6 @@ class SplashActivity : AppCompatActivity() {
 //                putExtra("targetNum", "3")
 //            }
 //            startActivity(intent)
-            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 2000) // hold within 2s
     }
