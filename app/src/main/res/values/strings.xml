@@ -22,4 +22,19 @@
     <string name="register_title">Register a new account</string>
     <string name="fab_label">fab-to-edit</string>
     <string name="btn_next_label">date-next</string>
+
+    <string name="add_habit_title">Add New Habit</string>
+    <string name="add_habit_submit">Create this habit</string>
+    <string name="add_habit_success">Habit created successfully</string>
+    <string name="edit_habit_title">Edit Habit Info</string>
+    <string name="edit_habit_submit">Update habit info</string>
+    <string name="edit_habit_success">Habit updated successfully</string>
+    <string name="start_date_picker">Select start date</string>
+    <string name="start_time_picker">Select start time</string>
+    <string name="end_date_picker">Select end date</string>
+    <string name="end_time_picker">Select end time</string>
+    <string name="reminder_time_title">Select reminder time</string>
+
+    <string name="detail_start_habit">Start Habit</string>
+    <string name="detail_end_habit">End Habit</string>
 </resources>
