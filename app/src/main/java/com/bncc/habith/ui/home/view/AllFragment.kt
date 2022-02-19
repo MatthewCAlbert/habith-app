@@ -1,5 +1,6 @@
-package com.bncc.habith.ui.home.fragment
+package com.bncc.habith.ui.home.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,9 +10,12 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.FragmentAllBinding
+import com.bncc.habith.ui.detail.DetailActivity
 import com.bncc.habith.ui.home.adapter.HabithAdapter
 import com.bncc.habith.ui.home.viewmodel.AllViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AllFragment : Fragment() {
 
     private lateinit var binding: FragmentAllBinding
@@ -37,8 +41,10 @@ class AllFragment : Fragment() {
     }
 
     private fun initView(){
-        habithAdapter = HabithAdapter {
-            //todo navigate to DetailActivity
+        habithAdapter = HabithAdapter() {
+            val i = Intent(requireContext(), DetailActivity::class.java)
+            i.putExtra("KEY", it)
+            startActivity(i)
         }
 
         with(binding) {

@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bncc.habith.R
+import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.ActivityDetailBinding
 import com.bncc.habith.ui.addedit.AddEditActivity
 
@@ -21,6 +22,9 @@ class DetailActivity : AppCompatActivity() {
         initBinding()
         getHabitFromIntent()
         setupView()
+
+        val data = intent.getParcelableExtra<HabithResponse>("")!!
+        Toast.makeText(this, data.title, Toast.LENGTH_SHORT).show()
     }
 
     private fun initBinding(){

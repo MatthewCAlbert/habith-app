@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Habith</string>
     <string name="app_logo">app-logo</string>
+    <string name="name_label">Name</string>
+    <string name="name_placeholder">Input your name</string>
     <string name="username_label">Username</string>
     <string name="username_placeholder">Input your username</string>
     <string name="username_placeholder_2">Must be at least 3 characters</string>
