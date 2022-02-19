@@ -48,12 +48,12 @@ interface ApiService {
         @Field("repeat_every_day") repeat: String
     ): BaseResponse<HabithResponse>
 
-    @GET("habit?withHistory=true")
+    @GET("habit?withHistory=false")
     suspend fun getAllHabithWithHistory(
         @Header("Authorization") token: String
-    ): BaseResponse<HabithResponse>
+    ): BaseResponse<List<HabithResponse>>
 
-    @GET("habit/{id}?withHistory=true")
+    @GET("habit/{id}?withHistory=false")
     suspend fun getHabith(
         @Header("Authorization") token: String, @Path("id") id: String
     ): BaseResponse<HabithResponse>

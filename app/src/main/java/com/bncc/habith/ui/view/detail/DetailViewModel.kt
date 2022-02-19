@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.detail
+package com.bncc.habith.ui.view.detail
 
 import androidx.lifecycle.ViewModel
 

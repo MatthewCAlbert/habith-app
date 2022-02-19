@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.addedit
+package com.bncc.habith.ui.view.addedit
 
 import android.os.Bundle
 import android.view.LayoutInflater

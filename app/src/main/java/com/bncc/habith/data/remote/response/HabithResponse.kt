@@ -14,9 +14,9 @@ data class HabithResponse(
     val target_type: String,
     val start: String?,
     val end: String?,
-    val repeat_every_day: String,
-    val repeat_on: String?,
-    val history: List<HabithHistoryResponse>?,
+    val repeat_every_day: String?,
+//    val history: List<HabithHistoryResponse>?,
+//    val repeat_on: String?,
     val created_at: String,
     val updated_at: String
 ): Parcelable
