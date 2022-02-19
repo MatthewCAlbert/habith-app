@@ -1,5 +1,6 @@
 package com.bncc.habith.ui.view.addedit
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
     private lateinit var reminderBinding: ItemReminderSheetBinding
     private val viewModel: ReminderBottomSheetViewModel by viewModels()
 
+    private var listener: ReminderBottomSheetListener? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,6 +25,18 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
     ): View {
         reminderBinding = ItemReminderSheetBinding.inflate(layoutInflater, container, false)
         return reminderBinding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is ReminderBottomSheetListener) {
+            listener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,6 +75,7 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
         }
 
         reminderBinding.btnSubmitReminder.setOnClickListener {
+            listener?.onSubmitReminder()
             dismiss()
         }
     }

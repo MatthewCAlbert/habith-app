@@ -13,7 +13,7 @@ import com.bncc.habith.util.extension.createTimePicker
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 
-class AddEditActivity : AppCompatActivity() {
+class AddEditActivity : AppCompatActivity(), ReminderBottomSheetListener {
     private lateinit var addEditBinding: ActivityAddEditBinding
     private val viewModel: AddEditViewModel by viewModels()
     private lateinit var extras: HabithResponse
@@ -144,5 +144,9 @@ class AddEditActivity : AppCompatActivity() {
     companion object{
         const val KEY = "to-add-edit"
         const val TYPE = "input-type"
+    }
+
+    override fun onSubmitReminder() {
+        print("handle data from bottomsheet here")
     }
 }
