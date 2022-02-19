@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.home.viewmodel
+package com.bncc.habith.ui.view.home
 
 import androidx.lifecycle.ViewModel
 import com.bncc.habith.util.UserPref
