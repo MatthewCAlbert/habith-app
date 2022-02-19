@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/MCA/Documents/University/bnccacademy/bncc-academy-mobile-group-3-project/app/src/main/res/layout/activity_register.xml" value="0.3625" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_add_edit.xml" value="0.15753424657534246" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_detail.xml" value="0.1597222222222222" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_login.xml" value="0.15753424657534246" />
         <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ClassFinalProjects/habith-app/app/src/main/res/drawable/bg_shape.xml" value="0.1" />
         <entry key="..\:/Users/micha/AndroidStudioProjects/ClassFinalProjects/habith-app/app/src/main/res/drawable/bg_shape_checked.xml" value="0.1" />
@@ -18,6 +20,11 @@
         <entry key="..\:/Users/micha/AndroidStudioProjects/ClassFinalProjects/habith-app/app/src/main/res/menu/menu_detail_app_bar.xml" value="0.4" />
         <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/activity_splash.xml" value="0.1796875" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/fragment_all.xml" value="0.1574074074074074" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/fragment_ongoing.xml" value="0.14520547945205478" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/layout/item_ongoing_list.xml" value="0.1597222222222222" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/menu/menu_detail_app_bar.xml" value="0.1597222222222222" />
+        <entry key="..\:/projects/programming/android/habith-app/app/src/main/res/menu/menu_home_app_bar.xml" value="0.1597222222222222" />
       </map>
     </option>
   </component>

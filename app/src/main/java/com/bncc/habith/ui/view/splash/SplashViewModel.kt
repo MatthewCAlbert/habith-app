@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.splash
+package com.bncc.habith.ui.view.splash
 
 import androidx.lifecycle.ViewModel
 import com.bncc.habith.util.UserPref

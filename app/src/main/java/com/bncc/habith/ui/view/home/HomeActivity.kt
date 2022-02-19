@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.home.view
+package com.bncc.habith.ui.view.home
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,9 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityHomeBinding
-import com.bncc.habith.ui.addedit.AddEditActivity
-import com.bncc.habith.ui.home.viewmodel.HomeViewModel
-import com.bncc.habith.ui.login.LoginActivity
+import com.bncc.habith.ui.view.addedit.AddEditActivity
+import com.bncc.habith.ui.view.habithall.AllFragment
+import com.bncc.habith.ui.view.habithongoing.OngoingFragment
+import com.bncc.habith.ui.view.login.LoginActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -62,7 +63,9 @@ class HomeActivity : AppCompatActivity() {
             }.attach()
 
             fabHome.setOnClickListener {
-                startActivity(Intent(this@HomeActivity, AddEditActivity::class.java))
+                val intent = Intent(this@HomeActivity, AddEditActivity::class.java)
+                intent.putExtra(AddEditActivity.TYPE, "add")
+                startActivity(intent)
             }
         }
     }
