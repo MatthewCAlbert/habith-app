@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bncc.habith.R
+import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.ActivityDetailBinding
 import com.bncc.habith.ui.view.addedit.AddEditActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,7 +49,6 @@ class DetailActivity : AppCompatActivity() {
 
         detailBinding.btnDoneHabit.setOnClickListener {
             Toast.makeText(this, "Habit done for the day. Nice!", Toast.LENGTH_SHORT).show()
-//            startActivity(Intent(this, HomeActivity::class.java))
         }
         detailBinding.btnActionHabit.setOnClickListener {
             viewModel.deleteHabith(extras.id!!)
