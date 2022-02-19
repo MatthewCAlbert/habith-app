@@ -14,26 +14,26 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleNote"
         tools:ignore="AllowBackup">
-        <activity android:name=".ui.detail.DetailActivity"
+        <activity android:name="com.bncc.habith.ui.view.detail.DetailActivity"
             android:exported="false"/>
         <activity
-            android:name=".ui.register.RegisterActivity"
+            android:name="com.bncc.habith.ui.view.register.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.view.HomeActivity"
+            android:name="com.bncc.habith.ui.view.home.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name="com.bncc.habith.ui.view.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.addedit.AddEditActivity"
-            android:parentActivityName=".ui.detail.DetailActivity"
+            android:name="com.bncc.habith.ui.view.addedit.AddEditActivity"
+            android:parentActivityName="com.bncc.habith.ui.view.detail.DetailActivity"
             android:exported="false">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.detail.DetailActivity"/>
+                android:value="com.bncc.habith.ui.view.detail.DetailActivity"/>
         </activity>
         <activity
-            android:name=".ui.splash.SplashActivity"
+            android:name="com.bncc.habith.ui.view.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

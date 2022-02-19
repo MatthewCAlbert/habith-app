@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.splash
+package com.bncc.habith.ui.view.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,8 +8,8 @@ import android.os.Looper
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.bncc.habith.databinding.ActivitySplashBinding
-import com.bncc.habith.ui.home.view.HomeActivity
-import com.bncc.habith.ui.login.LoginActivity
+import com.bncc.habith.ui.view.home.HomeActivity
+import com.bncc.habith.ui.view.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

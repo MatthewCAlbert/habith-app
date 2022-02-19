@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.register
+package com.bncc.habith.ui.view.register
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityRegisterBinding
-import com.bncc.habith.ui.home.view.HomeActivity
+import com.bncc.habith.ui.view.home.HomeActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
 import dagger.hilt.android.AndroidEntryPoint
 

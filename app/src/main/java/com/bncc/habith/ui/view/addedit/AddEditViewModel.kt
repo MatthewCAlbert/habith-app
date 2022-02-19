@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.addedit
+package com.bncc.habith.ui.view.addedit
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

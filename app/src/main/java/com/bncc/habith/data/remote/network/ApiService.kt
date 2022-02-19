@@ -45,15 +45,24 @@ interface ApiService {
         @Field("category") category: String, @Field("description") description: String,
         @Field("target") target: Int, @Field("target_type") targetType: String,
         @Field("start") start: String, @Field("end") end: String,
-        @Field("repeat_every_day") repeat: String
+        @Field("repeat_every_day") repeat: Int
     ): BaseResponse<HabithResponse>
 
-    @GET("habit?withHistory=true")
+    @FormUrlEncoded
+    @POST("habit")
+    suspend fun createHabith(
+        @Header("Authorization") token: String, @Field("title") title: String,
+        @Field("category") category: String, @Field("description") description: String,
+        @Field("target") target: Int, @Field("target_type") targetType: String,
+        @Field("repeat_every_day") repeat: Int
+    ): BaseResponse<HabithResponse>
+
+    @GET("habit?withHistory=false")
     suspend fun getAllHabithWithHistory(
         @Header("Authorization") token: String
-    ): BaseResponse<HabithResponse>
+    ): BaseResponse<List<HabithResponse>>
 
-    @GET("habit/{id}?withHistory=true")
+    @GET("habit/{id}?withHistory=false")
     suspend fun getHabith(
         @Header("Authorization") token: String, @Path("id") id: String
     ): BaseResponse<HabithResponse>

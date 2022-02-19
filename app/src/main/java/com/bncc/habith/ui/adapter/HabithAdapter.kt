@@ -1,13 +1,18 @@
-package com.bncc.habith.ui.home.adapter
+package com.bncc.habith.ui.adapter
 
+import android.content.Context
+import android.content.Intent
+import android.provider.Contacts.SettingsColumns.KEY
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.ItemOngoingListBinding
+import com.bncc.habith.ui.view.detail.DetailActivity
 
 class HabithAdapter(
-    private val listener: (HabithResponse) -> Unit
+    private val context: Context
 ) : RecyclerView.Adapter<HabithAdapter.ViewHolder>() {
 
     private var habits: List<HabithResponse> = ArrayList()
@@ -23,12 +28,22 @@ class HabithAdapter(
 
     class ViewHolder(private val binding: ItemOngoingListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(listener: (HabithResponse) -> Unit, habith: HabithResponse) {
+        fun onBind(context: Context, habith: HabithResponse) {
             with(binding) {
                 textTitle.text = habith.title
                 textCategory.text = habith.category
+                textTargetNum.text = habith.target.toString()
+                textRepeatTime.visibility = View.GONE
+                textDate.text = "${habith.start} - ${habith.end}"
+                textRepeatNum.text = "Repeat ${habith.repeat_every_day} time(s)"
+
+                if (habith.start.isNullOrEmpty()) textDate.visibility = View.GONE
             }
-            itemView.setOnClickListener { listener(habith) }
+            itemView.setOnClickListener {
+                val intent = Intent(context, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.KEY, habith)
+                context.startActivity(intent)
+            }
         }
     }
 
@@ -40,7 +55,7 @@ class HabithAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBind(listener, habits[position])
+        holder.onBind(context, habits[position])
     }
 
     override fun getItemCount(): Int = habits.size

@@ -1,4 +1,4 @@
-package com.bncc.habith.ui.home.view
+package com.bncc.habith.ui.view.habithall
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,9 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.FragmentAllBinding
-import com.bncc.habith.ui.detail.DetailActivity
-import com.bncc.habith.ui.home.adapter.HabithAdapter
-import com.bncc.habith.ui.home.viewmodel.AllViewModel
+import com.bncc.habith.ui.view.detail.DetailActivity
+import com.bncc.habith.ui.adapter.HabithAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,19 +32,18 @@ class AllFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.fetchHabith()
-
         initView()
         subscribeLiveData()
     }
 
+    override fun onStart() {
+        super.onStart()
+        viewModel.fetchHabith()
+    }
+
+
     private fun initView(){
-        habithAdapter = HabithAdapter() {
-            val i = Intent(requireContext(), DetailActivity::class.java)
-            i.putExtra("KEY", it)
-            startActivity(i)
-        }
+        habithAdapter = HabithAdapter(requireContext())
 
         with(binding) {
             recyclerAll.layoutManager = LinearLayoutManager(requireContext())

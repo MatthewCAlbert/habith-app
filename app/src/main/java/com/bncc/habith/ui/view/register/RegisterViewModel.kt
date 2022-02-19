@@ -1,7 +1,5 @@
-package com.bncc.habith.ui.login
+package com.bncc.habith.ui.view.register
 
-import android.content.SharedPreferences
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,16 +11,16 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(
+class RegisterViewModel @Inject constructor(
     private val pref: UserPref,
     private val repo: HabithRepositoryImpl
-) : ViewModel() {
+): ViewModel() {
 
-    private val isSuccess = MutableLiveData(false)
+    private val isSuccess = MutableLiveData<Boolean>(false)
 
-    fun login(username: String, password: String) {
+    fun register(username: String, email: String, password: String, name: String){
         viewModelScope.launch {
-            val response = repo.toLogin(username, password)
+            val response = repo.toRegister(email, username, password, name)
 
             if (response.success){
                 isSuccess.value = true
