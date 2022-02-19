@@ -25,17 +25,19 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.buttonRegister.setOnClickListener {
             if (!inputIsEmpty(binding.editTextUsername,binding.inputLayoutUsername, this)
+                && !inputIsEmpty(binding.editTextName, binding.inputLayoutName,this)
                 && !inputIsEmpty(binding.editTextEmail, binding.inputLayoutEmail,this)
                 && !inputIsEmpty(binding.editTextPassword, binding.inputLayoutPassword,this)
                 && !inputIsEmpty(binding.editTextPasswordRepeat, binding.inputLayoutPasswordRepeat,this)
             ) {
                 val username = binding.editTextUsername.text.toString()
+                val name = binding.editTextName.text.toString()
                 val email = binding.editTextEmail.text.toString()
                 val password = binding.editTextPassword.text.toString()
                 val passwordRepeat = binding.editTextPasswordRepeat.text.toString()
 
                 if (password == passwordRepeat){
-                    viewModel.register(username, email, password)
+                    viewModel.register(username, email, password, name)
                 }else{
                     Toast.makeText(this, R.string.password_not_matches, Toast.LENGTH_SHORT).show()
                 }
@@ -57,6 +59,11 @@ class RegisterActivity : AppCompatActivity() {
     private fun setupInput() {
         with(binding) {
             editTextUsername.doOnTextChanged { _, _, _, _ ->
+                if (inputLayoutUsername.isErrorEnabled)
+                    inputLayoutUsername.isErrorEnabled = false
+            }
+
+            editTextName.doOnTextChanged { _, _, _, _ ->
                 if (inputLayoutUsername.isErrorEnabled)
                     inputLayoutUsername.isErrorEnabled = false
             }
