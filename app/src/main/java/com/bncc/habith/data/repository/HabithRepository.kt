@@ -9,4 +9,5 @@ interface HabithRepository {
     suspend fun getHabithOngoing(): ArrayList<HabithResponse>
 
     suspend fun toLogin(username: String, password: String): BaseResponse<UserResponse>
+    suspend fun toRegister(email: String, username: String, password: String, name: String): BaseResponse<UserResponse>
 }

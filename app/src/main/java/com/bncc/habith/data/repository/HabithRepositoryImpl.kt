@@ -29,4 +29,10 @@ class HabithRepositoryImpl @Inject constructor(
             api.toLogin(username, password)
         }
     }
+
+    override suspend fun toRegister(email: String, username: String, password: String, name: String): BaseResponse<UserResponse> {
+        return withContext(Dispatchers.IO) {
+            api.toRegister(name, email, username, password)
+        }
+    }
 }
