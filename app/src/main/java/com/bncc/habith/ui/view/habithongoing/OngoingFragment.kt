@@ -30,10 +30,13 @@ class OngoingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.fetchHabith()
-
         initView()
         subscribeLiveData()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.fetchHabith()
     }
 
     private fun initView() {

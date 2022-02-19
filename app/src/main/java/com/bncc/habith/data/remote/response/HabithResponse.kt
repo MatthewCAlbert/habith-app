@@ -5,8 +5,8 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class HabithResponse(
-    val id: String,
-    val userId: String,
+    val id: String?,
+    val userId: String?,
     val title: String,
     val category: String,
     val description: String,
@@ -17,6 +17,6 @@ data class HabithResponse(
     val repeat_every_day: String?,
 //    val history: List<HabithHistoryResponse>?,
 //    val repeat_on: String?,
-    val created_at: String,
-    val updated_at: String
+    val created_at: String?,
+    val updated_at: String?
 ): Parcelable

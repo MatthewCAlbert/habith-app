@@ -12,7 +12,9 @@ import com.bncc.habith.R
 import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.ActivityDetailBinding
 import com.bncc.habith.ui.view.addedit.AddEditActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
     private lateinit var detailBinding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModels()
@@ -29,6 +31,11 @@ class DetailActivity : AppCompatActivity() {
     private fun initBinding() {
         detailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(detailBinding.root)
+
+        viewModel.isSuccess().observe(this){
+            if (it)
+                finish()
+        }
     }
 
     private fun setupView() {
@@ -45,6 +52,7 @@ class DetailActivity : AppCompatActivity() {
 //            startActivity(Intent(this, HomeActivity::class.java))
         }
         detailBinding.btnActionHabit.setOnClickListener {
+            viewModel.deleteHabith(extras.id!!)
             if (detailBinding.btnActionHabit.text == getString(R.string.detail_end_habit)) {
                 Toast.makeText(this, "Habit ended!", Toast.LENGTH_SHORT).show()
                 detailBinding.btnActionHabit.text = getString(R.string.detail_start_habit)
