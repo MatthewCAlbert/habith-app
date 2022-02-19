@@ -90,6 +90,7 @@ class AddEditActivity : AppCompatActivity() {
 
         addEditBinding.btnSubmit.setOnClickListener {
             Toast.makeText(this, submitTxt, Toast.LENGTH_SHORT).show()
+            //make new habit or update existing habit
         }
     }
 

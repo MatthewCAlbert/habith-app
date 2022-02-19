@@ -60,6 +60,8 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
         }
 
         reminderBinding.btnSubmitReminder.setOnClickListener {
+            //pass bundle back to activity
+            bundle.putString("repeatNum", reminderBinding.etRepeatDayNum.text.toString())
             dismiss()
         }
     }
@@ -68,34 +70,64 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
         const val TAG = "ReminderBottomSheet"
     }
 
+    var bundle = Bundle()
+
     override fun onCheckedChanged(view: CompoundButton, isChecked: Boolean) {
         if(view.id == R.id.btn_day7){
             if(isChecked){
                 Toast.makeText(context, "Sunday selected", Toast.LENGTH_SHORT).show()
+                bundle.putString("sun", "Sun")
+            }else{
+                Toast.makeText(context, "Sunday not selected", Toast.LENGTH_SHORT).show()
+                bundle.remove("sun")
             }
         }else if(view.id == R.id.btn_day1){
             if(isChecked){
                 Toast.makeText(context, "Monday selected", Toast.LENGTH_SHORT).show()
+                bundle.putString("mon", "Mon")
+            }else{
+                Toast.makeText(context, "Monday not selected", Toast.LENGTH_SHORT).show()
+                bundle.remove("mon")
             }
         }else if(view.id == R.id.btn_day2){
             if(isChecked){
                 Toast.makeText(context, "Tuesday selected", Toast.LENGTH_SHORT).show()
+                bundle.putString("tue", "Tue")
+            }else{
+                Toast.makeText(context, "Tuesday not selected", Toast.LENGTH_SHORT).show()
+                bundle.remove("tue")
             }
         }else if(view.id == R.id.btn_day3){
             if(isChecked){
                 Toast.makeText(context, "Wednesday selected", Toast.LENGTH_SHORT).show()
+                bundle.putString("wed", "Wed")
+            }else{
+                Toast.makeText(context, "Wednesday not selected", Toast.LENGTH_SHORT).show()
+                bundle.remove("wed")
             }
         }else if(view.id == R.id.btn_day4){
             if(isChecked){
                 Toast.makeText(context, "Thursday selected", Toast.LENGTH_SHORT).show()
+                bundle.putString("thu", "Thu")
+            }else{
+                Toast.makeText(context, "Thursday not selected", Toast.LENGTH_SHORT).show()
+                bundle.remove("thu")
             }
         }else if(view.id == R.id.btn_day5){
             if(isChecked){
                 Toast.makeText(context, "Friday selected", Toast.LENGTH_SHORT).show()
+                bundle.putString("fri", "Fri")
+            }else{
+                Toast.makeText(context, "Friday not selected", Toast.LENGTH_SHORT).show()
+                bundle.remove("fri")
             }
         }else if(view.id == R.id.btn_day6){
             if(isChecked){
                 Toast.makeText(context, "Saturday selected", Toast.LENGTH_SHORT).show()
+                bundle.putString("sat", "Sat")
+            }else{
+                Toast.makeText(context, "Saturday not selected", Toast.LENGTH_SHORT).show()
+                bundle.remove("sat")
             }
         }
     }
