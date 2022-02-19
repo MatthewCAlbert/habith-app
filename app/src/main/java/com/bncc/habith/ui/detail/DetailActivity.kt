@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.bncc.habith.R
+import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.ActivityDetailBinding
 import com.bncc.habith.ui.addedit.AddEditActivity
 
@@ -39,7 +40,6 @@ class DetailActivity : AppCompatActivity() {
 
         detailBinding.btnDoneHabit.setOnClickListener {
             Toast.makeText(this, "Habit done for the day. Nice!", Toast.LENGTH_SHORT).show()
-//            startActivity(Intent(this, HomeActivity::class.java))
         }
         detailBinding.btnActionHabit.setOnClickListener {
             if(detailBinding.btnActionHabit.text == getString(R.string.detail_end_habit)){
@@ -75,15 +75,20 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getHabitFromIntent(){
-        val extras = intent.extras!!
-        detailBinding.tvHabitName.text = extras.getString("habitName")
-        detailBinding.tvHabitCats.text = extras.getString("habitCats")
-        detailBinding.tvStartDateTimeValue.text = extras.getString("startDateTime")
-        detailBinding.tvEndDateTimeValue.text = extras.getString("endDateTime")
-        detailBinding.tvReminderValue.text = extras.getString("habitReminder")
-        detailBinding.tvDescValue.text = extras.getString("habitDesc")
-        viewModel.targetType = extras.getString("targetType").toString()
-        viewModel.targetNum = extras.getInt("targetNum", 0)
+        val extras = intent.getParcelableExtra<HabithResponse>("")!!
+        detailBinding.tvHabitName.text = extras.title
+        detailBinding.tvHabitCats.text = extras.category
+        detailBinding.tvStartDateTimeValue.text = extras.start
+        detailBinding.tvEndDateTimeValue.text = extras.end
+        if(extras.repeat_every_day.isEmpty()){
+            detailBinding.tvReminderValue.text = "Every " + extras.repeat_on
+        }else if(extras.repeat_on?.isEmpty() == true){
+            detailBinding.tvReminderValue.text = "Every " + extras.repeat_every_day
+        }
+
+        detailBinding.tvDescValue.text = extras.description
+        viewModel.targetType = extras.target_type
+        viewModel.targetNum = extras.target
         if(viewModel.targetNum==0){
             //hide target progress section
             detailBinding.dividerTarget.visibility = View.GONE
