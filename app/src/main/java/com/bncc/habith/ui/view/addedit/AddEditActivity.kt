@@ -125,7 +125,7 @@ class AddEditActivity : AppCompatActivity() {
         if(type.equals("add")){
             addEditBinding.tvTitle.text = getString(R.string.add_habit_title)
             addEditBinding.btnSubmit.text = getString(R.string.add_habit_submit)
-            submitTxt = R.string.add_habit_success.toString()
+            submitTxt = getString(R.string.add_habit_success)
         }else{
             extras = intent.getParcelableExtra(KEY)!!
             addEditBinding.tvTitle.text = getString(R.string.edit_habit_title)
