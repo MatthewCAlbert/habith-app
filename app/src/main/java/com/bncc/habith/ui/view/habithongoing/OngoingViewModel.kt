@@ -13,15 +13,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OngoingViewModel @Inject constructor(
-    private val repository: HabithRepositoryImpl,
-    private val pref: UserPref
+    private val repository: HabithRepositoryImpl
 ) : ViewModel() {
 
     private val habithLiveData = MutableLiveData<List<HabithResponse>>()
 
     fun fetchHabith() {
         viewModelScope.launch {
-            val response = repository.getHabithOngoing(pref.getToken()!!)
+            val response = repository.getHabithOngoing()
 
             if (response.success)
                 habithLiveData.value = response.data!!

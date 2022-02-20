@@ -13,20 +13,19 @@ class HabithRepositoryImpl @Inject constructor(
     private val api: ApiService
 ) : HabithRepository {
 
-    override suspend fun getHabithAll(token: String): BaseResponse<List<HabithResponse>> {
+    override suspend fun getHabithAll(): BaseResponse<List<HabithResponse>> {
         return withContext(Dispatchers.IO) {
-            api.getAllHabithWithHistory(token)
+            api.getAllHabithWithHistory()
         }
     }
 
-    override suspend fun getHabithOngoing(token: String): BaseResponse<List<HabithResponse>> {
+    override suspend fun getHabithOngoing(): BaseResponse<List<HabithResponse>> {
         return withContext(Dispatchers.IO) {
-            api.getAllHabithWithHistory(token)
+            api.getAllHabithWithHistory()
         }
     }
 
     override suspend fun createHabith(
-        token: String,
         data: HabithResponse
     ): BaseResponse<HabithResponse> {
         return withContext(Dispatchers.IO) {
@@ -36,14 +35,14 @@ class HabithRepositoryImpl @Inject constructor(
 //                    data.target, data.target_type, data.repeat_every_day ?: "1"
 //                )
 //            } else {
-            api.createHabith(token, "asdads", "adsasd", "adsasd", 1, "none", 5)
+            api.createHabith("asdads", "adsasd", "adsasd", 1, "none", 5)
 //            }
         }
     }
 
-    override suspend fun removeHabith(token: String, id: String): BaseResponse<HabithResponse> {
+    override suspend fun removeHabith(id: String): BaseResponse<HabithResponse> {
         return withContext(Dispatchers.IO) {
-            api.deleteHabith(token, id)
+            api.deleteHabith(id)
         }
     }
 

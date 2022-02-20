@@ -22,7 +22,7 @@ interface ApiService {
     ): BaseResponse<UserResponse>
 
     @GET("auth/profile")
-    suspend fun getUserDetail(@Header("Authorization") token: String): BaseResponse<UserResponse>
+    suspend fun getUserDetail(): BaseResponse<UserResponse>
 
     @FormUrlEncoded
     @PUT("auth/profile")
@@ -33,7 +33,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("auth/change-password")
     suspend fun updateUserPassword(
-        @Header("Authorization") token: String, @Field("oldPassword") old: String,
+        @Field("oldPassword") old: String,
         @Field("newPassword") new: String, @Field("rePassword") repeat: String,
     ): BaseResponse<UserResponse>
 
@@ -41,7 +41,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("habit")
     suspend fun createHabith(
-        @Header("Authorization") token: String, @Field("title") title: String,
+        @Field("title") title: String,
         @Field("category") category: String, @Field("description") description: String,
         @Field("target") target: Int, @Field("target_type") targetType: String,
         @Field("start") start: String, @Field("end") end: String,
@@ -51,26 +51,24 @@ interface ApiService {
     @FormUrlEncoded
     @POST("habit")
     suspend fun createHabith(
-        @Header("Authorization") token: String, @Field("title") title: String,
+        @Field("title") title: String,
         @Field("category") category: String, @Field("description") description: String,
         @Field("target") target: Int, @Field("target_type") targetType: String,
         @Field("repeat_every_day") repeat: Int
     ): BaseResponse<HabithResponse>
 
     @GET("habit?withHistory=false")
-    suspend fun getAllHabithWithHistory(
-        @Header("Authorization") token: String
-    ): BaseResponse<List<HabithResponse>>
+    suspend fun getAllHabithWithHistory(): BaseResponse<List<HabithResponse>>
 
     @GET("habit/{id}?withHistory=false")
     suspend fun getHabith(
-        @Header("Authorization") token: String, @Path("id") id: String
+        @Path("id") id: String
     ): BaseResponse<HabithResponse>
 
     @FormUrlEncoded
     @PUT("habit/{id}")
     suspend fun updateHabith(
-        @Header("Authorization") token: String, @Path("id") id: String,
+        @Path("id") id: String,
         @Field("title") title: String, @Field("description") description: String,
         @Field("category") category: String, @Field("repeat_every_day") repeat: String,
         @Field("target") target: Int, @Field("target_type") targetType: String,
@@ -79,7 +77,7 @@ interface ApiService {
 
     @DELETE("habit/{id}")
     suspend fun deleteHabith(
-        @Header("Authorization") token: String, @Path("id") id: String
+        @Path("id") id: String
     ): BaseResponse<HabithResponse>
 
     @FormUrlEncoded
@@ -91,18 +89,18 @@ interface ApiService {
 
     @GET("habit/history/{id}")
     suspend fun getHabithHistory(
-        @Header("Authorization") token: String, @Path("id") id: String
+        @Path("id") id: String
     ): BaseResponse<HabithHistoryResponse>
 
     @DELETE("habit/history/{id}")
     suspend fun deleteHabithHistory(
-        @Header("Authorization") token: String, @Path("id") id: String
+        @Path("id") id: String
     ): BaseResponse<HabithHistoryResponse>
 
     @FormUrlEncoded
     @PUT("habit/history/{id}")
     suspend fun updateHabithHistory(
-        @Header("Authorization") token: String, @Path("id") id: String,
+        @Path("id") id: String,
         @Field("value") value: Int
     ): BaseResponse<HabithHistoryResponse>
 }

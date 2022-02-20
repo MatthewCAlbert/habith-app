@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val pref: UserPref,
     private val repo: HabithRepositoryImpl
 ): ViewModel() {
     lateinit var targetType: String
@@ -30,7 +29,7 @@ class DetailViewModel @Inject constructor(
 
     fun deleteHabith(id: String){
         viewModelScope.launch {
-            val response = repo.removeHabith(pref.getToken()!!, id)
+            val response = repo.removeHabith(id)
             _isSuccess.value = response.success
         }
     }
