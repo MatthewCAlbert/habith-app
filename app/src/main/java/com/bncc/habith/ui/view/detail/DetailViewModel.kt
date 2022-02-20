@@ -4,15 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bncc.habith.data.repository.HabithRepositoryImpl
-import com.bncc.habith.util.UserPref
+import com.bncc.habith.domain.interactor.HabitInteractor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repo: HabithRepositoryImpl
+    private val interactor: HabitInteractor
 ): ViewModel() {
     lateinit var targetType: String
     var targetNum = 0
@@ -29,7 +28,7 @@ class DetailViewModel @Inject constructor(
 
     fun deleteHabith(id: String){
         viewModelScope.launch {
-            val response = repo.removeHabith(id)
+            val response = interactor.removeHabith(id)
             _isSuccess.value = response.success
         }
     }
