@@ -3,37 +3,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.bncc.habith">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:allowBackup="true"
         android:name=".HabithApp"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SimpleNote"
         tools:ignore="AllowBackup">
-        <activity android:name="com.bncc.habith.ui.view.detail.DetailActivity"
-            android:exported="false"/>
         <activity
-            android:name="com.bncc.habith.ui.view.register.RegisterActivity"
+            android:name=".ui.view.updatepassword.UpdatePasswordActivity"
             android:exported="false" />
         <activity
-            android:name="com.bncc.habith.ui.view.home.HomeActivity"
+            android:name=".ui.view.updateprofile.UpdateProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.bncc.habith.ui.view.login.LoginActivity"
+            android:name=".ui.view.profile.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.bncc.habith.ui.view.addedit.AddEditActivity"
-            android:parentActivityName="com.bncc.habith.ui.view.detail.DetailActivity"
-            android:exported="false">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.bncc.habith.ui.view.detail.DetailActivity"/>
+            android:name=".ui.view.detail.DetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.register.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.home.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.login.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.view.addedit.AddEditActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.view.detail.DetailActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.bncc.habith.ui.view.detail.DetailActivity" />
         </activity>
         <activity
-            android:name="com.bncc.habith.ui.view.splash.SplashActivity"
+            android:name=".ui.view.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

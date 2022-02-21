@@ -13,6 +13,7 @@ import com.bncc.habith.ui.view.addedit.AddEditActivity
 import com.bncc.habith.ui.view.habithall.AllFragment
 import com.bncc.habith.ui.view.habithongoing.OngoingFragment
 import com.bncc.habith.ui.view.login.LoginActivity
+import com.bncc.habith.ui.view.profile.ProfileActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -35,10 +36,8 @@ class HomeActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.menu_logout -> {
-                viewModel.logout()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
+            R.id.menu_setting -> {
+                startActivity(Intent(this, ProfileActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

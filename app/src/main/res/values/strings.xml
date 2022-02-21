@@ -7,6 +7,9 @@
     <string name="username_placeholder">Input your username</string>
     <string name="username_placeholder_2">Must be at least 3 characters</string>
     <string name="password_label">Password</string>
+    <string name="old_password_label">Old Password</string>
+    <string name="new_password_label">New Password</string>
+    <string name="re_password_label">Repeat Password</string>
     <string name="password_placeholder">Input your password</string>
     <string name="password_placeholder_2">Must be at least 6 characters</string>
     <string name="password_placeholder_3">Password must match</string>
@@ -39,4 +42,22 @@
 
     <string name="detail_start_habit">Start Habit</string>
     <string name="detail_end_habit">End Habit</string>
+    <string name="label_image_profile_list">profile-icon-list</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_image_profile">image-profile</string>
+    <string name="label_account">Account</string>
+    <string name="label_setting">to-setting</string>
+    <string name="label_update_detail_profile">Update detail profile</string>
+
+    <string-array name="profile_texts">
+        <item>Edit Profile</item>
+        <item>Edit Password</item>
+        <item>Logout</item>
+    </string-array>
+
+    <string-array name="profile_images">
+        <item>@drawable/ic_profile</item>
+        <item>@drawable/ic_password</item>
+        <item>@drawable/ic_logout</item>
+    </string-array>
 </resources>

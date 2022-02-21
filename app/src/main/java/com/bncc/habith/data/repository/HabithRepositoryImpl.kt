@@ -7,6 +7,7 @@ import com.bncc.habith.data.remote.response.UserResponse
 import com.bncc.habith.util.UserPref
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Response
 import javax.inject.Inject
 
 class HabithRepositoryImpl @Inject constructor(
@@ -47,7 +48,13 @@ class HabithRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun toLogin(username: String, password: String): BaseResponse<UserResponse> {
+
+    /*-------------------------------------- AUTH ------------------------------------------------*/
+
+    override suspend fun toLogin(
+        username: String,
+        password: String
+    ): BaseResponse<UserResponse> {
         return withContext(Dispatchers.IO) {
             api.toLogin(username, password)
         }
@@ -63,4 +70,31 @@ class HabithRepositoryImpl @Inject constructor(
             api.toRegister(name, email, username, password)
         }
     }
+
+    override suspend fun getUserDetail(token: String): BaseResponse<UserResponse> {
+        return withContext(Dispatchers.IO) {
+            api.getUserDetail(token)
+        }
+    }
+
+    override suspend fun updateUserDetail(
+        token: String,
+        name: String
+    ): BaseResponse<UserResponse> {
+        return withContext(Dispatchers.IO) {
+            api.updateUserDetail(token, name)
+        }
+    }
+
+    override suspend fun updaterUserPassword(
+        token: String,
+        old: String,
+        new: String
+    ): Response<BaseResponse<UserResponse>> {
+        return withContext(Dispatchers.IO) {
+            api.updateUserPassword(token, old, new, new)
+        }
+    }
+
+
 }

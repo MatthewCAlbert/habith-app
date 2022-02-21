@@ -37,7 +37,7 @@ class HabithAdapter(
                 textDate.text = "${habith.start} - ${habith.end}"
                 textRepeatNum.text = "Repeat ${habith.repeat_every_day} time(s)"
 
-                if (habith.start.isNullOrEmpty()) textDate.visibility = View.GONE
+                if (habith.start == null) textDate.visibility = View.GONE
             }
             itemView.setOnClickListener {
                 val intent = Intent(context, DetailActivity::class.java)

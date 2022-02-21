@@ -4,6 +4,7 @@ import com.bncc.habith.data.remote.response.UserResponse
 import com.bncc.habith.data.remote.response.BaseResponse
 import com.bncc.habith.data.remote.response.HabithHistoryResponse
 import com.bncc.habith.data.remote.response.HabithResponse
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ApiService {
@@ -35,7 +36,7 @@ interface ApiService {
     suspend fun updateUserPassword(
         @Header("Authorization") token: String, @Field("oldPassword") old: String,
         @Field("newPassword") new: String, @Field("rePassword") repeat: String,
-    ): BaseResponse<UserResponse>
+    ): Response<BaseResponse<UserResponse>>
 
 
     @FormUrlEncoded
