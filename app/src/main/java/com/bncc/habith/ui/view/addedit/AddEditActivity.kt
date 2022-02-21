@@ -13,7 +13,7 @@ import com.bncc.habith.util.extension.createTimePicker
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 
-class AddEditActivity : AppCompatActivity() {
+class AddEditActivity : AppCompatActivity(), ReminderBottomSheetListener {
     private lateinit var addEditBinding: ActivityAddEditBinding
     private val viewModel: AddEditViewModel by viewModels()
     private lateinit var extras: HabithResponse
@@ -42,7 +42,7 @@ class AddEditActivity : AppCompatActivity() {
     private fun setupView(){
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        timePickerStart = createTimePicker(R.string.start_time_picker.toString(),
+        timePickerStart = createTimePicker(getString(R.string.start_time_picker),
             onGetResult = {
                 viewModel.onTimeSelected(it, true)
             },
@@ -50,7 +50,7 @@ class AddEditActivity : AppCompatActivity() {
                 viewModel.onTimeCanceled(true)
             }
         )
-        timePickerEnd = createTimePicker(R.string.end_time_picker.toString(),
+        timePickerEnd = createTimePicker(getString(R.string.end_time_picker),
             onGetResult = {
                 viewModel.onTimeSelected(it, false)
             },
@@ -59,12 +59,12 @@ class AddEditActivity : AppCompatActivity() {
             }
         )
 
-        datePickerStart = createHandleDatePicker(R.string.start_date_picker.toString(),
+        datePickerStart = createHandleDatePicker(getString(R.string.start_date_picker),
             onGetResult = {
                 viewModel.onDateSelected(it, true)
             }
         )
-        datePickerEnd = createHandleDatePicker(R.string.end_date_picker.toString(),
+        datePickerEnd = createHandleDatePicker(getString(R.string.end_date_picker),
             onGetResult = {
                 viewModel.onDateSelected(it, false)
             }
@@ -91,7 +91,19 @@ class AddEditActivity : AppCompatActivity() {
 
         addEditBinding.btnSubmit.setOnClickListener {
             Toast.makeText(this, submitTxt, Toast.LENGTH_SHORT).show()
-            //make new habit or update existing habit
+            addEditBinding.etHabitName.text.toString()
+            addEditBinding.etHabitCats.text.toString()
+            addEditBinding.etHabitStartDateTime.text.toString()
+            addEditBinding.etHabitEndDateTime.text.toString()
+            addEditBinding.etHabitReminder.text.toString()
+            addEditBinding.etHabitDesc.text.toString()
+            addEditBinding.tvTargetType.text
+            addEditBinding.etTargetNum.text.toString()
+            if(addEditBinding.btnSubmit.text == getString(R.string.add_habit_submit)){
+                //make new habit
+            }else{
+                //update existing habit
+            }
         }
     }
 
@@ -150,5 +162,9 @@ class AddEditActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return true
+    }
+
+    override fun onSubmitReminder() {
+        //how to get dayArr from ReminderViewModel to here?
     }
 }

@@ -1,5 +1,6 @@
 package com.bncc.habith.ui.view.addedit
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,8 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
     private lateinit var reminderBinding: ItemReminderSheetBinding
     private val viewModel: ReminderBottomSheetViewModel by viewModels()
 
+    private var listener: ReminderBottomSheetListener? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,6 +25,18 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
     ): View {
         reminderBinding = ItemReminderSheetBinding.inflate(layoutInflater, container, false)
         return reminderBinding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if(context is ReminderBottomSheetListener){
+            listener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,7 +61,7 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
         reminderBinding.btnDay6.setOnCheckedChangeListener(this)
 
         val timePicker = createTimePicker(
-            R.string.reminder_time_title.toString(),
+            getString(R.string.reminder_time_title),
             onGetResult = {
                 reminderBinding.btnRepeatTime.text = it
             },
@@ -61,73 +76,58 @@ class ReminderBottomSheet : BottomSheetDialogFragment(), CompoundButton.OnChecke
 
         reminderBinding.btnSubmitReminder.setOnClickListener {
             //pass bundle back to activity
-            bundle.putString("repeatNum", reminderBinding.etRepeatDayNum.text.toString())
+            if(reminderBinding.switchRepeatType.isChecked){
+                viewModel.sortDayArr()
+            }else{
+                reminderBinding.etRepeatDayNum.text.toString()
+            }
+            listener?.onSubmitReminder()
             dismiss()
         }
     }
 
-    companion object {
-        const val TAG = "ReminderBottomSheet"
-    }
-
-    var bundle = Bundle()
-
     override fun onCheckedChanged(view: CompoundButton, isChecked: Boolean) {
         if(view.id == R.id.btn_day7){
             if(isChecked){
-                Toast.makeText(context, "Sunday selected", Toast.LENGTH_SHORT).show()
-                bundle.putString("sun", "Sun")
+                viewModel.addDay(6)
             }else{
-                Toast.makeText(context, "Sunday not selected", Toast.LENGTH_SHORT).show()
-                bundle.remove("sun")
+                viewModel.removeDay(6)
             }
         }else if(view.id == R.id.btn_day1){
             if(isChecked){
-                Toast.makeText(context, "Monday selected", Toast.LENGTH_SHORT).show()
-                bundle.putString("mon", "Mon")
+                viewModel.addDay(0)
             }else{
-                Toast.makeText(context, "Monday not selected", Toast.LENGTH_SHORT).show()
-                bundle.remove("mon")
+                viewModel.removeDay(0)
             }
         }else if(view.id == R.id.btn_day2){
             if(isChecked){
-                Toast.makeText(context, "Tuesday selected", Toast.LENGTH_SHORT).show()
-                bundle.putString("tue", "Tue")
+                viewModel.addDay(1)
             }else{
-                Toast.makeText(context, "Tuesday not selected", Toast.LENGTH_SHORT).show()
-                bundle.remove("tue")
+                viewModel.removeDay(1)
             }
         }else if(view.id == R.id.btn_day3){
             if(isChecked){
-                Toast.makeText(context, "Wednesday selected", Toast.LENGTH_SHORT).show()
-                bundle.putString("wed", "Wed")
+                viewModel.addDay(2)
             }else{
-                Toast.makeText(context, "Wednesday not selected", Toast.LENGTH_SHORT).show()
-                bundle.remove("wed")
+                viewModel.removeDay(2)
             }
         }else if(view.id == R.id.btn_day4){
             if(isChecked){
-                Toast.makeText(context, "Thursday selected", Toast.LENGTH_SHORT).show()
-                bundle.putString("thu", "Thu")
+                viewModel.addDay(3)
             }else{
-                Toast.makeText(context, "Thursday not selected", Toast.LENGTH_SHORT).show()
-                bundle.remove("thu")
+                viewModel.removeDay(3)
             }
         }else if(view.id == R.id.btn_day5){
             if(isChecked){
-                Toast.makeText(context, "Friday selected", Toast.LENGTH_SHORT).show()
-                bundle.putString("fri", "Fri")
+                viewModel.addDay(4)
             }else{
-                Toast.makeText(context, "Friday not selected", Toast.LENGTH_SHORT).show()
-                bundle.remove("fri")
+                viewModel.removeDay(4)
             }
         }else if(view.id == R.id.btn_day6){
             if(isChecked){
-                Toast.makeText(context, "Saturday selected", Toast.LENGTH_SHORT).show()
-                bundle.putString("sat", "Sat")
+                viewModel.addDay(5)
             }else{
-                Toast.makeText(context, "Saturday not selected", Toast.LENGTH_SHORT).show()
-                bundle.remove("sat")
+                viewModel.removeDay(5)
             }
         }
     }
