@@ -18,7 +18,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailActivity : AppCompatActivity() {
     private lateinit var detailBinding: ActivityDetailBinding
     private val viewModel: DetailViewModel by viewModels()
-    private lateinit var extras: HabithResponse
+    private lateinit var extras: HabithResponse.Data
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

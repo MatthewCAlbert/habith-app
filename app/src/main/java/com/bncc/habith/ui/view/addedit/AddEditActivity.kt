@@ -16,7 +16,7 @@ import com.google.android.material.timepicker.MaterialTimePicker
 class AddEditActivity : AppCompatActivity() {
     private lateinit var addEditBinding: ActivityAddEditBinding
     private val viewModel: AddEditViewModel by viewModels()
-    private lateinit var extras: HabithResponse
+    private lateinit var extras: HabithResponse.Data
 
     private lateinit var datePickerStart: MaterialDatePicker<Long>
     private lateinit var datePickerEnd: MaterialDatePicker<Long>

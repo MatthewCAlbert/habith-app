@@ -1,32 +1,34 @@
 package com.bncc.habith.ui.view.habithongoing
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bncc.habith.data.repository.HabithRepositoryImpl
 import com.bncc.habith.data.remote.response.HabithResponse
-import com.bncc.habith.util.UserPref
+import com.bncc.habith.ui.state.LiveDataStatus
+import com.bncc.habith.ui.state.MutableLiveDataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class OngoingViewModel @Inject constructor(
-    private val repository: HabithRepositoryImpl,
-    private val pref: UserPref
+    private val repo: HabithRepositoryImpl,
 ) : ViewModel() {
 
-    private val habithLiveData = MutableLiveData<List<HabithResponse>>()
+    private val _habithLiveData = MutableLiveDataStatus<List<HabithResponse.Data>>()
 
-    fun fetchHabith() {
-        viewModelScope.launch {
-            val response = repository.getHabithOngoing(pref.getToken()!!)
+    fun fetchHabith() = viewModelScope.launch {
+        _habithLiveData.postLoading()
+        try {
+            val response = repo.getHabithOngoing()
 
-            if (response.success)
-                habithLiveData.value = response.data!!
+            if (response.isNullOrEmpty()) _habithLiveData.postEmpty()
+            else _habithLiveData.postSuccess(response)
+
+        } catch (e: Exception) {
+            _habithLiveData.postError(e)
         }
     }
 
-    fun getHabith(): LiveData<List<HabithResponse>> = habithLiveData
+    fun getHabith(): LiveDataStatus<List<HabithResponse.Data>> = _habithLiveData
 }

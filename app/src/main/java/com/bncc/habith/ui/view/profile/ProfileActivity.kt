@@ -3,7 +3,6 @@ package com.bncc.habith.ui.view.profile
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bncc.habith.R
@@ -66,8 +65,8 @@ class ProfileActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.userDetail().observe(this) {
-            binding.textEmail.text = it.user.email
-            binding.textName.text = it.user.name
+            binding.textEmail.text = it.data.user.email
+            binding.textName.text = it.data.user.name
         }
 
         viewModel.viewState().observe(this) {

@@ -1,18 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.view.habithongoing.OngoingFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.bncc.habith.ui.state.DataStatus.Status" />
+
+        <import type="android.view.View" />
+
+        <import type="com.bncc.habith.ui.state.DataStatus.Status" />
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:id="@+id/swipe_refresh_ongoing"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#f0f0f0"
+        tools:context=".ui.view.habithongoing.OngoingFragment">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_ongoing"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_ongoing"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-</FrameLayout>
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_ongoing"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="@{viewState == Status.SUCCESS ? View.VISIBLE : View.GONE}"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <include
+            android:id="@+id/loading"
+            layout="@layout/layout_loading"
+            android:visibility="@{viewState == Status.LOADING ? View.VISIBLE : View.GONE}" />
+
+        <include
+            android:id="@+id/error"
+            layout="@layout/layout_error"
+            android:visibility="@{viewState == Status.ERROR ? View.VISIBLE : View.GONE}" />
+
+        <include
+            android:id="@+id/empty"
+            layout="@layout/layout_empty"
+            android:visibility="@{viewState == Status.EMPTY ? View.VISIBLE : View.GONE}" />
+
+    </FrameLayout>
+
+</layout>

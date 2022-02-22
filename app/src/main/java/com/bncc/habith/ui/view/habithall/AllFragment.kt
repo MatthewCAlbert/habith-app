@@ -1,6 +1,5 @@
 package com.bncc.habith.ui.view.habithall
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.FragmentAllBinding
-import com.bncc.habith.ui.view.detail.DetailActivity
 import com.bncc.habith.ui.adapter.HabithAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -77,7 +75,7 @@ class AllFragment : Fragment() {
         }
     }
 
-    private fun loadHabith(habits: List<HabithResponse>) {
+    private fun loadHabith(habits: List<HabithResponse.Data>) {
         habits.let {
             habithAdapter.clearHabits()
             habithAdapter.fillHabits(habits)

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.bncc.habith.R
@@ -12,7 +11,6 @@ import com.bncc.habith.databinding.ActivityHomeBinding
 import com.bncc.habith.ui.view.addedit.AddEditActivity
 import com.bncc.habith.ui.view.habithall.AllFragment
 import com.bncc.habith.ui.view.habithongoing.OngoingFragment
-import com.bncc.habith.ui.view.login.LoginActivity
 import com.bncc.habith.ui.view.profile.ProfileActivity
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

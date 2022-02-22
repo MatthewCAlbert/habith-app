@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.FragmentOngoingBinding
 import com.bncc.habith.ui.adapter.HabithAdapter
+import com.bncc.habith.ui.state.DataStatus
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,7 +25,6 @@ class OngoingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOngoingBinding.inflate(layoutInflater, container, false)
-
         return binding.root
     }
 
@@ -54,11 +54,13 @@ class OngoingFragment : Fragment() {
 
     private fun subscribeLiveData() {
         viewModel.getHabith().observe(requireActivity()) {
-            loadHabith(it!!)
+            binding.viewState = it.status
+
+            if (it.status == DataStatus.Status.SUCCESS) loadHabith(it.data!!)
         }
     }
 
-    private fun loadHabith(habits: List<HabithResponse>) {
+    private fun loadHabith(habits: List<HabithResponse.Data>) {
         habits.let {
             habithAdapter.clearHabits()
             habithAdapter.fillHabits(habits)

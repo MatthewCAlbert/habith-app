@@ -34,6 +34,7 @@ android {
     }
     buildFeatures{
         viewBinding true
+        dataBinding true
     }
 }
 
@@ -73,4 +74,6 @@ dependencies {
     implementation "androidx.room:room-ktx:2.4.1"
     kapt "androidx.room:room-compiler:2.4.1"
 
+    // Lottie
+    implementation "com.airbnb.android:lottie:4.2.2"
 }

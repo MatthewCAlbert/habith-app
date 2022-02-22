@@ -15,20 +15,20 @@ class HabithAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<HabithAdapter.ViewHolder>() {
 
-    private var habits: List<HabithResponse> = ArrayList()
+    private var habits: List<HabithResponse.Data> = ArrayList()
 
     fun clearHabits() {
         this.habits = emptyList()
     }
 
-    fun fillHabits(habits: List<HabithResponse>) {
+    fun fillHabits(habits: List<HabithResponse.Data>) {
         this.habits = habits
         notifyDataSetChanged()
     }
 
     class ViewHolder(private val binding: ItemOngoingListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(context: Context, habith: HabithResponse) {
+        fun onBind(context: Context, habith: HabithResponse.Data) {
             with(binding) {
                 textTitle.text = habith.title
                 textCategory.text = habith.category

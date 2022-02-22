@@ -12,7 +12,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class UpdatePasswordViewModel @Inject constructor(
-    private val pref: UserPref,
     private val repo: HabithRepositoryImpl
 ): ViewModel(){
 
@@ -20,10 +19,10 @@ class UpdatePasswordViewModel @Inject constructor(
 
     fun updatePassword(old: String, new: String) {
         viewModelScope.launch {
-            val response = repo.updaterUserPassword(pref.getToken()!!, old, new)
+            val response = repo.updateUserPassword(old, new)
             _viewState.value = "loading"
 
-            if (response.isSuccessful) {
+            if (response!!.success) {
                 _viewState.value = "success"
             } else {
                 _viewState.value = "failed"
