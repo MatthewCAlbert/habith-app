@@ -1,10 +1,11 @@
 package com.bncc.habith.ui.view.updateprofile
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bncc.habith.data.remote.response.UserResponse
 import com.bncc.habith.data.repository.HabithRepositoryImpl
+import com.bncc.habith.ui.state.LiveDataStatus
+import com.bncc.habith.ui.state.MutableLiveDataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -14,20 +15,21 @@ class UpdateProfileViewModel @Inject constructor(
     private val repo: HabithRepositoryImpl
 ) : ViewModel() {
 
-    private val _viewState = MutableLiveData<String>()
+    private val _viewState = MutableLiveDataStatus<UserResponse>()
 
     fun updateProfile(name: String) {
         viewModelScope.launch {
-            val response = repo.updateUserDetail(name)
-            _viewState.value = "loading"
+            _viewState.postLoading()
+            try {
+                val response = repo.updateUserDetail(name)
+                if (response!!.success)
+                    _viewState.postSuccess(response)
 
-            if (response!!.success) {
-                _viewState.value = "success"
-            } else {
-                _viewState.value = "failed"
+            }catch (e: Exception){
+                _viewState.postError(e)
             }
         }
     }
 
-    fun viewState(): LiveData<String> = _viewState
+    fun viewState(): LiveDataStatus<UserResponse> = _viewState
 }

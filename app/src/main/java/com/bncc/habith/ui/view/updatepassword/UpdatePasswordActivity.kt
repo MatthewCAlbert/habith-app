@@ -1,14 +1,13 @@
 package com.bncc.habith.ui.view.updatepassword
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.view.isVisible
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityUpdatePasswordBinding
-import com.bncc.habith.ui.view.updateprofile.UpdateProfileActivity
+import com.bncc.habith.ui.state.DataStatus
 import com.bncc.habith.util.InputHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,18 +28,14 @@ class UpdatePasswordActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.viewState().observe(this) {
-            when (it) {
-                "loading" -> {
-                    binding.btnUpdate.isEnabled = false
-                    binding.loading.isVisible = true
-                }
-                "success" -> finish()
-                "failed" -> {
-                    binding.btnUpdate.isEnabled = true
-                    binding.loading.isVisible = false
-                    Toast.makeText(this, "Update failed!", Toast.LENGTH_SHORT).show()
-                }
-            }
+            binding.viewState = it.status
+
+            if (it.status == DataStatus.Status.SUCCESS) finish()
+            else if (it.status == DataStatus.Status.ERROR) Toast.makeText(
+                this,
+                it.error.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

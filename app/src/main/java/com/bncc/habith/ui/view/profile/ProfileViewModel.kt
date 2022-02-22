@@ -10,6 +10,8 @@ import com.bncc.habith.data.repository.HabithRepositoryImpl
 import com.bncc.habith.domain.interactor.AuthInteractor
 import com.bncc.habith.domain.usecase.ClearSessionUseCase
 import com.bncc.habith.domain.usecase.GetIsLoginUseCase
+import com.bncc.habith.ui.state.LiveDataStatus
+import com.bncc.habith.ui.state.MutableLiveDataStatus
 import com.bncc.habith.util.UserPref
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,24 +23,25 @@ class ProfileViewModel @Inject constructor(
     private val interactor: AuthInteractor
 ) : ViewModel() {
 
-    private val _viewState = MutableLiveData("loading")
-    private val _userDetail = MutableLiveData<UserResponse>()
+    private val _userDetail = MutableLiveDataStatus<UserResponse.Data>()
 
     fun getUserDetail() {
         viewModelScope.launch {
-            val response = interactor.toDetail()
+            _userDetail.postLoading()
+            try {
+                val response = interactor.toDetail()
 
-            if (response!!.success){
-                _userDetail.value = response!!
-                _viewState.value = "success"
+                if (response!!.success) {
+                    _userDetail.postSuccess(response.data)
+                }
+            } catch (e: Exception) {
+                _userDetail.postError(e)
             }
         }
     }
 
     fun logout() = clearSessionUseCase.invoke()
 
-    fun userDetail(): LiveData<UserResponse> = _userDetail
-
-    fun viewState(): LiveData<String> = _viewState
+    fun userDetail(): LiveDataStatus<UserResponse.Data> = _userDetail
 
 }

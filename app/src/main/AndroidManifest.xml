@@ -16,9 +16,11 @@
         tools:ignore="AllowBackup">
         <activity
             android:name=".ui.view.updatepassword.UpdatePasswordActivity"
+            android:parentActivityName=".ui.view.profile.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.view.updateprofile.UpdateProfileActivity"
+            android:parentActivityName=".ui.view.profile.ProfileActivity"
             android:exported="false" />
         <activity
             android:name=".ui.view.profile.ProfileActivity"

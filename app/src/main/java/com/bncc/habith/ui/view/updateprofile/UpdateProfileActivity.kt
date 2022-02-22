@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import com.bncc.habith.databinding.ActivityUpdateProfileBinding
+import com.bncc.habith.ui.state.DataStatus
 import com.bncc.habith.util.InputHelper
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,17 +28,14 @@ class UpdateProfileActivity : AppCompatActivity() {
 
     private fun initObserver() {
         viewModel.viewState().observe(this) {
-            when (it) {
-                "loading" -> {
-                    binding.btnUpdate.isEnabled = false
-                    binding.loading.isVisible = true
-                }
-                "success" -> finish()
-                "failed" -> {
-                    Toast.makeText(this, "Update failed!", Toast.LENGTH_SHORT).show()
-                    binding.loading.isVisible = false
-                }
-            }
+            binding.viewState = it.status
+
+            if (it.status == DataStatus.Status.SUCCESS) finish()
+            else if (it.status == DataStatus.Status.ERROR) Toast.makeText(
+                this,
+                it.error.toString(),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 

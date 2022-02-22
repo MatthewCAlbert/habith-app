@@ -1,45 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.view.updateprofile.UpdateProfileActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
-        android:id="@+id/loading"
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.bncc.habith.ui.state.DataStatus.Status" />
+
+        <import type="android.view.View" />
+
+        <import type="com.bncc.habith.ui.state.DataStatus.Status" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:indeterminate="true"
-        android:visibility="invisible"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.view.updateprofile.UpdateProfileActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_layout_name"
-        style="@style/AuthInputText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
-        android:hint="@string/name_label"
-        app:layout_constraintTop_toTopOf="parent"
-        app:placeholderText="@string/username_placeholder">
+        <include
+            android:id="@+id/loading"
+            layout="@layout/layout_loading"
+            android:visibility="@{viewState == Status.LOADING ? View.VISIBLE : View.GONE}" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_name"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_name"
+            style="@style/AuthInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/name_placeholder"
-            android:inputType="textPersonName" />
+            android:layout_margin="16dp"
+            android:hint="@string/name_label"
+            app:placeholderText="@string/username_placeholder">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edit_text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name_placeholder"
+                android:inputType="textPersonName" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_update"
-        style="@style/PrimaryButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/label_update_detail_profile"
-        app:layout_constraintTop_toBottomOf="@id/input_layout_name" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_update"
+            style="@style/PrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/label_update_detail_profile" />
+
+    </LinearLayout>
+</layout>
