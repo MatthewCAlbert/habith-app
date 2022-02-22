@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityRegisterBinding
+import com.bncc.habith.ui.state.DataStatus
 import com.bncc.habith.ui.view.home.HomeActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,13 +22,41 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         initBinding()
+        initView()
+        initObserver()
         setupInput()
 
+    }
+
+    private fun initObserver() {
+        viewModel.viewState().observe(this) {
+            binding.viewState = it.status
+            when (it.status) {
+                DataStatus.Status.SUCCESS -> {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                }
+                DataStatus.Status.EMPTY -> Toast.makeText(
+                    this,
+                    "Email & username already taken!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                DataStatus.Status.ERROR -> Toast.makeText(
+                    this,
+                    it.error.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+                else -> {/*do nothing!*/}
+            }
+        }
+    }
+
+    private fun initView() {
         binding.buttonRegister.setOnClickListener {
-            if (!inputIsEmpty(binding.editTextUsername,binding.inputLayoutUsername, this)
-                && !inputIsEmpty(binding.editTextName, binding.inputLayoutName,this)
-                && !inputIsEmpty(binding.editTextEmail, binding.inputLayoutEmail,this)
-                && !inputIsEmpty(binding.editTextPassword, binding.inputLayoutPassword,this)
+            if (!inputIsEmpty(binding.editTextName, binding.inputLayoutName, this)
+                && !inputIsEmpty(binding.editTextUsername, binding.inputLayoutUsername, this)
+                && !inputIsEmpty(binding.editTextEmail, binding.inputLayoutEmail, this)
+                && !inputIsEmpty(binding.editTextPassword, binding.inputLayoutPassword, this)
                 && !inputIsEmpty(binding.editTextPasswordRepeat, binding.inputLayoutPasswordRepeat,this)
             ) {
                 val username = binding.editTextUsername.text.toString()
@@ -36,18 +65,11 @@ class RegisterActivity : AppCompatActivity() {
                 val password = binding.editTextPassword.text.toString()
                 val passwordRepeat = binding.editTextPasswordRepeat.text.toString()
 
-                if (password == passwordRepeat){
-                    viewModel.register(username, email, password, name)
-                }else{
+                if (password == passwordRepeat) {
+                    viewModel.register(name, email, password, username)
+                } else {
                     Toast.makeText(this, R.string.password_not_matches, Toast.LENGTH_SHORT).show()
                 }
-            }
-        }
-
-        viewModel.getIsSuccess().observe(this){
-            if (it){
-                startActivity(Intent(this, HomeActivity::class.java))
-                finishAffinity()
             }
         }
 
@@ -64,8 +86,8 @@ class RegisterActivity : AppCompatActivity() {
             }
 
             editTextName.doOnTextChanged { _, _, _, _ ->
-                if (inputLayoutUsername.isErrorEnabled)
-                    inputLayoutUsername.isErrorEnabled = false
+                if (inputLayoutName.isErrorEnabled)
+                    inputLayoutName.isErrorEnabled = false
             }
 
             editTextEmail.doOnTextChanged { _, _, _, _ ->

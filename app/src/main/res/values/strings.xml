@@ -39,4 +39,73 @@
 
     <string name="detail_start_habit">Start Habit</string>
     <string name="detail_end_habit">End Habit</string>
+    <string name="add_edit_button">Add/Edit Button</string>
+    <string name="target_amount">Target Amount</string>
+    <string name="target_type">Target Type</string>
+    <string name="description_addedit">Description</string>
+    <string name="reminder_addedit">Reminder</string>
+    <string name="end_date_time_addedit">End Date/Time</string>
+    <string name="start_date_time_addedit">Start Date/Time</string>
+    <string name="habit_category_addedit">Habit Category</string>
+    <string name="habit_name_addedit">Habit Name</string>
+    <string name="add_edit_title">Add/Edit Title</string>
+
+    <string name="done">Done</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
+    <string name="target_progress">Target Progress</string>
+    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_donec_mattis_dolor_nec_velit_bibendum_ultrices_in_nec_finibus_metus_nunc_ipsum_sem_volutpat_id_consectetur_sed_tempor_ac_tortor_sed_volutpat_tincidunt_lectus_sit_amet_ullamcorper_nisi_egestas_vel_quisque_posuere_interdum_mollis_nam_non_libero_viverra_auctor_mi_sed_tempor_ex_nam_in_est_id_augue_ullamcorper_dapibus_ut_sed_mollis_velit_eget_tincidunt_dui_cras_at_ultrices_lectus_cras_porta_sollicitudin_velit_sed_consectetur_dui_pharetra_vitae_nam_ac_vehicula_quam_nulla_fringilla_enim_et_semper_venenatis_orci_varius_natoque_penatibus_et_magnis_dis_parturient_montes_nascetur_ridiculus_mus_praesent_tristique_suscipit_sem_ut_accumsan_arcu_ornare_eget">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis dolor nec velit bibendum ultrices. In nec finibus metus. Nunc ipsum sem, volutpat id consectetur sed, tempor ac tortor. Sed volutpat tincidunt lectus, sit amet ullamcorper nisi egestas vel. Quisque posuere interdum mollis. Nam non libero viverra, auctor mi sed, tempor ex. Nam in est id augue ullamcorper dapibus. Ut sed mollis velit, eget tincidunt dui. Cras at ultrices lectus. Cras porta sollicitudin velit, sed consectetur dui pharetra vitae. Nam ac vehicula quam. Nulla fringilla enim et semper venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent tristique suscipit sem, ut accumsan arcu ornare eget.</string>
+    <string name="description_detail">Description</string>
+    <string name="every_mon_tue_wed_thu_fri_on_14_00">Every Mon, Tue, Wed, Thu, Fri on 14:00</string>
+    <string name="reminder_detail">Reminder</string>
+    <string name="_31_01_23_13_00">31/01/23, 13:00</string>
+    <string name="due_date_time">Due Date/Time</string>
+    <string name="_31_01_22_13_00">31/01/22, 13:00</string>
+    <string name="start_date_time_detail">Start Date/Time</string>
+    <string name="category_detail">Category</string>
+    <string name="habit_name_detail">Habit Name</string>
+    <string name="target_num">5</string>
+    <string name="daily_target">Daily Target</string>
+    <string name="on_repeattime">on RepeatTime</string>
+    <string name="every_repeatnum_repeatdaystr">Every RepeatNum/RepeatDayStr</string>
+    <string name="start_date_end_date">Start Date - End Date</string>
+    <string name="category">Category</string>
+    <string name="habith_name">Habith Name</string>
+
+    <string name="repeats_every">Repeats every…</string>
+    <string name="repeat_day_num">0</string>
+    <string name="days">Days</string>
+    <string name="sun">Sun</string>
+    <string name="mon">Mon</string>
+    <string name="tue">Tue</string>
+    <string name="wed">Wed</string>
+    <string name="thu">Thu</string>
+    <string name="fri">Fri</string>
+    <string name="sat">Sat</string>
+    <string name="repeat_on">Repeat on…</string>
+    <string name="add_time">Add Time</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="label_setting">Setting</string>
+    <string name="label_image_profile_list">image-profile</string>
+    <string name="label_update_detail_profile">Update profile</string>
+    <string name="re_password_label">Repeat Password</string>
+    <string name="new_password_label">New Password</string>
+    <string name="old_password_label">Old Password</string>
+    <string name="label_account">Account</string>
+    <string name="label_image_profile">image-profile</string>
+    <string name="msg_data_not_found">Data not found!</string>
+    <string name="msg_no_connection">Your connection is lost!</string>
+    <string name="msg_fetching">Fetching data, please wait..</string>
+
+    <string-array name="profile_texts">
+        <item>Edit Profile</item>
+        <item>Edit Password</item>
+        <item>Logout</item>
+    </string-array>
+
+    <string-array name="profile_images">
+        <item>@drawable/ic_profile</item>
+        <item>@drawable/ic_password</item>
+        <item>@drawable/ic_logout</item>
+    </string-array>
 </resources>

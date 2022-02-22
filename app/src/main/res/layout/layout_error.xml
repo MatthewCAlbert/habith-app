@@ -6,20 +6,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="vertical"
+    android:background="@color/background"
     tools:viewBindingIgnore="true">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie_view"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/error" />
+        app:lottie_rawRes="@raw/empty" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="16dp"
-        android:text="Your connection is lost!" />
+        android:text="@string/msg_no_connection" />
 
 </LinearLayout>

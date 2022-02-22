@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
-import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityLoginBinding
 import com.bncc.habith.ui.state.DataStatus
 import com.bncc.habith.ui.view.home.HomeActivity

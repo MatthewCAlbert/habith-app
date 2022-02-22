@@ -1,11 +1,12 @@
 package com.bncc.habith.ui.view.register
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bncc.habith.data.repository.HabithRepositoryImpl
+import com.bncc.habith.data.remote.response.UserResponse
+import com.bncc.habith.domain.interactor.AuthInteractor
 import com.bncc.habith.domain.usecase.SetTokenUseCase
+import com.bncc.habith.ui.state.LiveDataStatus
+import com.bncc.habith.ui.state.MutableLiveDataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,23 +14,27 @@ import javax.inject.Inject
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
     private val setTokenUseCase: SetTokenUseCase,
-    private val repo: HabithRepositoryImpl
+    private val interactor: AuthInteractor
 ) : ViewModel() {
 
-    private val isSuccess = MutableLiveData<Boolean>()
+    private val _viewState = MutableLiveDataStatus<UserResponse>()
 
-    fun register(username: String, email: String, password: String, name: String) {
+    fun register(name: String, email: String, password: String, username: String) =
         viewModelScope.launch {
-            val response = repo.toRegister(email, username, password, name)
+            _viewState.postLoading()
+            try {
+                val response = interactor.toRegister(name, email, password, username)
 
-            if (response!!.success) {
-                isSuccess.value = true
-                setTokenUseCase.invoke(response.data.token!!)
-            } else {
-                isSuccess.value = false
+                if (response == null) {
+                    _viewState.postEmpty()
+                } else {
+                    setTokenUseCase.invoke(response.data.token!!)
+                    _viewState.postSuccess(response)
+                }
+            } catch (e: Exception) {
+                _viewState.postError(e)
             }
         }
-    }
 
-    fun getIsSuccess(): LiveData<Boolean> = isSuccess
+    fun viewState(): LiveDataStatus<UserResponse> = _viewState
 }
