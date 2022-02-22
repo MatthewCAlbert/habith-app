@@ -88,6 +88,7 @@
     <string name="label_setting">Setting</string>
     <string name="label_image_profile_list">image-profile</string>
     <string name="label_update_detail_profile">Update profile</string>
+    <string name="label_update_detail_password">Update password</string>
     <string name="re_password_label">Repeat Password</string>
     <string name="new_password_label">New Password</string>
     <string name="old_password_label">Old Password</string>
