@@ -3,5 +3,5 @@
     <item android:drawable="@drawable/bg_shape" android:state_checked="true" />
     <item android:drawable="@drawable/bg_shape" android:state_pressed="true" />
     <item android:drawable="@drawable/bg_shape" android:state_focused="true" />
-    <item android:drawable="@drawable/bg_shape_purple" android:state_checked="false" />
+    <item android:drawable="@drawable/bg_shape_orange" android:state_checked="false" />
 </selector>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.view.login.LoginActivity">
+    tools:context=".ui.view.login.LoginActivity"
+    android:background="@color/paper_white">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -71,7 +72,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_login"
-        style="@style/PrimaryButton"
+        style="@style/PrimaryButton.Rounded.Padded"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
