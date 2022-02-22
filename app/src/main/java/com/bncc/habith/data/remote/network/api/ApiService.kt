@@ -57,7 +57,7 @@ interface ApiService {
     ): Response<HabithResponse>
 
     @GET("habit?withHistory=false")
-    suspend fun getAllHabithWithHistory(): Response<List<HabithResponse.Data>>
+    suspend fun getAllHabithWithHistory(): Response<HabithResponse>
 
     @GET("habit/{id}?withHistory=false")
     suspend fun getHabith(@Path("id") id: String): Response<HabithResponse>

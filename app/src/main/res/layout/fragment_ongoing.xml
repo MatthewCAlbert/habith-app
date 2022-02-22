@@ -16,7 +16,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#f0f0f0"
+        android:background="@color/background"
         tools:context=".ui.view.habithongoing.OngoingFragment">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

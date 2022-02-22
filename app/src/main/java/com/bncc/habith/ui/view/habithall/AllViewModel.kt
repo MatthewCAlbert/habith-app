@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bncc.habith.data.repository.HabithRepositoryImpl
 import com.bncc.habith.data.remote.response.HabithResponse
+import com.bncc.habith.ui.state.LiveDataStatus
+import com.bncc.habith.ui.state.MutableLiveDataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -17,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllViewModel @Inject constructor(
-    private val repository: HabithRepositoryImpl
+    private val repo: HabithRepositoryImpl
 ) : ViewModel() {
 
     private val c = Calendar.getInstance()
@@ -27,18 +29,24 @@ class AllViewModel @Inject constructor(
 
     private var formattedDate = df.format(c.time)
 
-    private val habithLiveData = MutableLiveData<List<HabithResponse.Data>>()
-
     private val dateLiveData = MutableLiveData(formattedDate)
 
-    fun fetchHabith() {
-        viewModelScope.launch {
-            val response = repository.getHabithAll()
+    private val _habithLiveData = MutableLiveDataStatus<List<HabithResponse.Data>>()
 
-            if (!response.isNullOrEmpty())
-                habithLiveData.value = response!!
+    fun fetchHabith() = viewModelScope.launch {
+        _habithLiveData.postLoading()
+        try {
+            val response = repo.getHabithAll()
+
+            if (!response!!.success) _habithLiveData.postEmpty()
+            else _habithLiveData.postSuccess(response.data)
+
+        } catch (e: Exception) {
+            _habithLiveData.postError(e)
         }
     }
+
+    fun getHabith(): LiveDataStatus<List<HabithResponse.Data>> = _habithLiveData
 
     fun pickDate(context: Context) {
         val newYear = c.get(Calendar.YEAR)
@@ -61,8 +69,6 @@ class AllViewModel @Inject constructor(
 
         dateLiveData.value = formattedDate
     }
-
-    fun getHabith(): LiveData<List<HabithResponse.Data>> = habithLiveData
 
     fun getDate(): LiveData<String> = dateLiveData
 }

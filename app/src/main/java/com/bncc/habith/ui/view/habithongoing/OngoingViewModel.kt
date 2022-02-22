@@ -1,5 +1,6 @@
 package com.bncc.habith.ui.view.habithongoing
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bncc.habith.data.repository.HabithRepositoryImpl
@@ -22,8 +23,9 @@ class OngoingViewModel @Inject constructor(
         try {
             val response = repo.getHabithOngoing()
 
-            if (response.isNullOrEmpty()) _habithLiveData.postEmpty()
-            else _habithLiveData.postSuccess(response)
+            Log.d("RESPONSE", response.toString())
+            if (!response!!.success) _habithLiveData.postEmpty()
+            else _habithLiveData.postSuccess(response.data)
 
         } catch (e: Exception) {
             _habithLiveData.postError(e)

@@ -19,11 +19,11 @@ class ApiClient @Inject constructor(
         }
     }
 
-    suspend fun getHabithAll(): BaseResponse<List<HabithResponse.Data>> {
+    suspend fun getHabithAll(): BaseResponse<HabithResponse> {
         return safeApiCall { api.getAllHabithWithHistory() }
     }
 
-    suspend fun getHabithOngoing(): BaseResponse<List<HabithResponse.Data>> {
+    suspend fun getHabithOngoing(): BaseResponse<HabithResponse> {
         return safeApiCall { api.getAllHabithWithHistory() }
     }
 

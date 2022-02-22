@@ -8,7 +8,7 @@ import javax.inject.Inject
 class HabithRepositoryImpl @Inject constructor(
     private val api: ApiClient
 ) : HabithRepository {
-    override suspend fun getHabithAll(): List<HabithResponse.Data>? {
+    override suspend fun getHabithAll(): HabithResponse? {
         val request = api.getHabithAll()
 
         if (!request.isSuccessful) return null
@@ -18,7 +18,7 @@ class HabithRepositoryImpl @Inject constructor(
         return request.body
     }
 
-    override suspend fun getHabithOngoing(): List<HabithResponse.Data>? {
+    override suspend fun getHabithOngoing(): HabithResponse? {
         val request = api.getHabithOngoing()
 
         if (!request.isSuccessful) return null
