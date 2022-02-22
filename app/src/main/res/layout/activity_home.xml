@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.view.home.HomeActivity">
+    tools:context=".ui.view.home.HomeActivity"
+    android:background="@color/paper_white">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_home"

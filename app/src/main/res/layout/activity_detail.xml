@@ -4,22 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".ui.view.detail.DetailActivity">
+    tools:context=".ui.view.detail.DetailActivity"
+    android:background="@color/paper_white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        android:background="@color/paper_white">
 
         <TextView
             android:id="@+id/tv_habitName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Habit Name"
+            android:text="@string/habit_name_detail"
             android:textSize="24sp"
+            android:fontFamily="@font/lato_bold"
             android:layout_marginTop="24dp"
-            android:layout_marginHorizontal="24dp"
+            android:layout_marginHorizontal="16dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -27,8 +28,9 @@
             android:id="@+id/tv_habitCats"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Category"
+            android:text="@string/category"
             android:textSize="14sp"
+            android:fontFamily="@font/lato_light"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/tv_habitName"
             app:layout_constraintStart_toStartOf="@id/tv_habitName"
@@ -40,7 +42,7 @@
             android:layout_height="wrap_content"
             app:dividerInsetStart="16dp"
             app:dividerInsetEnd="16dp"
-            app:dividerColor="@color/black"
+            app:dividerColor="@color/light_gray"
             app:dividerThickness="1dp"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@id/tv_habitCats"
@@ -50,7 +52,7 @@
             android:id="@+id/tv_startDateTime_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Start Date/Time"
+            android:text="@string/start_date_time_detail"
             android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
@@ -62,7 +64,9 @@
             android:id="@+id/tv_startDateTime_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="31/01/22, 13:00"
+            android:text="@string/_31_01_22_13_00"
+            android:fontFamily="@font/lato_light"
+            android:textColor="@color/light_gray"
             app:drawableStartCompat="@drawable/calendar_ic_20"
             android:drawablePadding="8dp"
             android:layout_marginTop="8dp"
@@ -74,7 +78,7 @@
             android:id="@+id/tv_endDateTime_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Due Date/Time"
+            android:text="@string/due_date_time"
             android:layout_marginTop="16dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
@@ -86,7 +90,9 @@
             android:id="@+id/tv_endDateTime_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="31/01/23, 13:00"
+            android:text="@string/_31_01_23_13_00"
+            android:fontFamily="@font/lato_light"
+            android:textColor="@color/light_gray"
             app:drawableStartCompat="@drawable/calendar_ic_20"
             android:drawablePadding="8dp"
             android:layout_marginTop="8dp"
@@ -98,7 +104,7 @@
             android:id="@+id/tv_reminder_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Reminder"
+            android:text="@string/reminder_detail"
             android:layout_margin="16dp"
             app:layout_constraintTop_toBottomOf="@id/tv_startDateTime_value"
             app:layout_constraintStart_toStartOf="parent" />
@@ -107,7 +113,9 @@
             android:id="@+id/tv_reminder_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Every Mon, Tue, Wed, Thu, Fri on 14:00"
+            android:text="@string/every_mon_tue_wed_thu_fri_on_14_00"
+            android:fontFamily="@font/lato_light"
+            android:textColor="@color/light_gray"
             android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@id/tv_reminder_title"
             app:layout_constraintStart_toStartOf="@id/tv_reminder_title"
@@ -119,7 +127,7 @@
             android:layout_height="wrap_content"
             app:dividerInsetStart="16dp"
             app:dividerInsetEnd="16dp"
-            app:dividerColor="@color/black"
+            app:dividerColor="@color/light_gray"
             app:dividerThickness="1dp"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@id/tv_reminder_value"
@@ -129,7 +137,7 @@
             android:id="@+id/tv_desc_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Description"
+            android:text="@string/description_detail"
             android:layout_margin="16dp"
             app:layout_constraintTop_toBottomOf="@id/divider_desc"
             app:layout_constraintStart_toStartOf="parent" />
@@ -138,9 +146,11 @@
             android:id="@+id/tv_desc_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mattis dolor nec velit bibendum ultrices. In nec finibus metus. Nunc ipsum sem, volutpat id consectetur sed, tempor ac tortor. Sed volutpat tincidunt lectus, sit amet ullamcorper nisi egestas vel. Quisque posuere interdum mollis. Nam non libero viverra, auctor mi sed, tempor ex. Nam in est id augue ullamcorper dapibus. Ut sed mollis velit, eget tincidunt dui. Cras at ultrices lectus. Cras porta sollicitudin velit, sed consectetur dui pharetra vitae. Nam ac vehicula quam. Nulla fringilla enim et semper venenatis. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent tristique suscipit sem, ut accumsan arcu ornare eget."
+            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_donec_mattis_dolor_nec_velit_bibendum_ultrices_in_nec_finibus_metus_nunc_ipsum_sem_volutpat_id_consectetur_sed_tempor_ac_tortor_sed_volutpat_tincidunt_lectus_sit_amet_ullamcorper_nisi_egestas_vel_quisque_posuere_interdum_mollis_nam_non_libero_viverra_auctor_mi_sed_tempor_ex_nam_in_est_id_augue_ullamcorper_dapibus_ut_sed_mollis_velit_eget_tincidunt_dui_cras_at_ultrices_lectus_cras_porta_sollicitudin_velit_sed_consectetur_dui_pharetra_vitae_nam_ac_vehicula_quam_nulla_fringilla_enim_et_semper_venenatis_orci_varius_natoque_penatibus_et_magnis_dis_parturient_montes_nascetur_ridiculus_mus_praesent_tristique_suscipit_sem_ut_accumsan_arcu_ornare_eget"
             android:maxLines="10"
             android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_light"
+            android:textColor="@color/light_gray"
             app:layout_constraintTop_toBottomOf="@id/tv_desc_title"
             app:layout_constraintStart_toStartOf="@id/tv_desc_title"
             app:layout_constraintEnd_toEndOf="@id/tv_desc_title"/>
@@ -151,7 +161,7 @@
             android:layout_height="wrap_content"
             app:dividerInsetStart="16dp"
             app:dividerInsetEnd="16dp"
-            app:dividerColor="@color/black"
+            app:dividerColor="@color/light_gray"
             app:dividerThickness="1dp"
             android:layout_marginVertical="16dp"
             app:layout_constraintTop_toBottomOf="@id/tv_desc_value"
@@ -162,19 +172,19 @@
             android:id="@+id/tv_target_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Target Progress"
+            android:layout_marginBottom="12dp"
+            android:text="@string/target_progress"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginBottom="12dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/et_layout_targetNum"/>
+            app:layout_constraintBottom_toTopOf="@id/et_layout_targetNum"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_targetMinus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
+            android:text="@string/minus"
             android:textSize="40sp"
             android:paddingVertical="12dp"
             android:layout_marginStart="60sp"
@@ -205,7 +215,7 @@
             android:id="@+id/btn_targetPlus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+"
+            android:text="@string/plus"
             android:textSize="40sp"
             android:paddingVertical="12dp"
             android:layout_marginBottom="80dp"
@@ -218,9 +228,9 @@
             android:id="@+id/btn_doneHabit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Done"
+            android:text="@string/done"
             android:textSize="18sp"
-            android:padding="24dp"
+            style="@style/PrimaryButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/btn_actionHabit"
             />
@@ -231,11 +241,10 @@
             android:layout_height="wrap_content"
             android:text="@string/detail_end_habit"
             android:textSize="18sp"
-            android:padding="24dp"
-            android:backgroundTint="#9F1006"
+            android:backgroundTint="@color/brown"
+            style="@style/PrimaryButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
