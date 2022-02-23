@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.ItemOngoingListBinding
 import com.bncc.habith.ui.view.detail.DetailActivity
+import com.bncc.habith.util.InputHelper.fixedDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
@@ -40,15 +41,9 @@ class HabithAdapter(
                 textTargetNum.text = habith.target.toString()
                 textRepeatTime.visibility = View.GONE
 
-                if (habith.start != null) {
-                    val default = DateTimeFormatter.ofPattern(
-                        "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
-                        Locale.getDefault()
-                    )
-                    val fixed = DateTimeFormatter.ofPattern("dd MMM, yyy", Locale.getDefault())
-                    val fixStart = fixed.format(default.parse(habith.start))
-                    val fixEnd = fixed.format(default.parse(habith.end))
-
+                if (habith.start != null && habith.end != null) {
+                    val fixStart = fixedDate(habith.start)
+                    val fixEnd = fixedDate(habith.end)
                     textDate.text = "$fixStart - $fixEnd"
 
                 } else textDate.visibility = View.GONE

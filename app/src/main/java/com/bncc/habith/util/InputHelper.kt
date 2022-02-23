@@ -1,9 +1,13 @@
 package com.bncc.habith.util
 
 import android.content.Context
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.bncc.habith.R
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 object InputHelper {
 
@@ -19,5 +23,18 @@ object InputHelper {
         }
 
         return false
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun fixedDate(date: String): String {
+        if (date != "null"){
+            val default = DateTimeFormatter.ofPattern(
+                "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",
+                Locale.getDefault()
+            )
+            val fixed = DateTimeFormatter.ofPattern("dd MMM, yyy", Locale.getDefault())
+            return fixed.format(default.parse(date))
+        }
+        return "-"
     }
 }
