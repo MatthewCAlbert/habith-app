@@ -2,9 +2,9 @@ package com.bncc.habith.data.remote.network.api
 
 import com.bncc.habith.data.remote.response.BaseResponse
 import com.bncc.habith.data.remote.response.HabithResponse
+import com.bncc.habith.data.remote.response.HabithResponse2
 import com.bncc.habith.data.remote.response.UserResponse
 import retrofit2.Response
-import java.lang.Exception
 import javax.inject.Inject
 
 class ApiClient @Inject constructor(
@@ -27,8 +27,30 @@ class ApiClient @Inject constructor(
         return safeApiCall { api.getAllHabithWithHistory() }
     }
 
-    suspend fun createHabith(data: HabithResponse): BaseResponse<HabithResponse> {
-        return safeApiCall { api.createHabith("", "", "", 0, "", 0) }
+    suspend fun createHabith(data: HabithResponse2.Data): BaseResponse<HabithResponse2> {
+        return safeApiCall {
+            if (data.start == null && data.end == null) {
+                api.createHabith(
+                    data.title,
+                    data.category,
+                    data.description,
+                    data.target,
+                    data.target_type!!,
+                    data.repeat_every_day.toInt()
+                )
+            } else {
+                api.createHabith(
+                    data.title,
+                    data.category,
+                    data.description,
+                    data.target,
+                    data.target_type!!,
+                    data.start!!,
+                    data.end!!,
+                    data.repeat_every_day.toInt()
+                )
+            }
+        }
     }
 
     suspend fun removeHabith(id: String): BaseResponse<HabithResponse> {

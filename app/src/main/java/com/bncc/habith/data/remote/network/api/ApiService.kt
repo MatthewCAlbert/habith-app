@@ -3,6 +3,7 @@ package com.bncc.habith.data.remote.network.api
 import com.bncc.habith.data.remote.response.UserResponse
 import com.bncc.habith.data.remote.response.HabithHistoryResponse
 import com.bncc.habith.data.remote.response.HabithResponse
+import com.bncc.habith.data.remote.response.HabithResponse2
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -45,7 +46,7 @@ interface ApiService {
         @Field("target") target: Int, @Field("target_type") targetType: String,
         @Field("start") start: String, @Field("end") end: String,
         @Field("repeat_every_day") repeat: Int
-    ): Response<HabithResponse>
+    ): Response<HabithResponse2>
 
     @FormUrlEncoded
     @POST("habit")
@@ -54,7 +55,7 @@ interface ApiService {
         @Field("category") category: String, @Field("description") description: String,
         @Field("target") target: Int, @Field("target_type") targetType: String,
         @Field("repeat_every_day") repeat: Int
-    ): Response<HabithResponse>
+    ): Response<HabithResponse2>
 
     @GET("habit?withHistory=false")
     suspend fun getAllHabithWithHistory(): Response<HabithResponse>

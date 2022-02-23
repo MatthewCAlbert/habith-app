@@ -1,12 +1,13 @@
 package com.bncc.habith.data.repository
 
 import com.bncc.habith.data.remote.response.HabithResponse
+import com.bncc.habith.data.remote.response.HabithResponse2
 import com.bncc.habith.data.remote.response.UserResponse
 
 interface HabithRepository {
     suspend fun getHabithAll(): HabithResponse?
     suspend fun getHabithOngoing(): HabithResponse?
-    suspend fun createHabith(data: HabithResponse): HabithResponse?
+    suspend fun createHabith(data: HabithResponse2.Data): HabithResponse2?
     suspend fun removeHabith(id: String): HabithResponse?
 
     suspend fun toLogin(username: String, password: String): UserResponse?

@@ -37,4 +37,18 @@ object InputHelper {
         }
         return "-"
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun fixedDate2(date: String): String {
+        if (date != "null"){
+            val default = DateTimeFormatter.ofPattern(
+                "dd/MM/yy HH:mm",
+                Locale.getDefault()
+            )
+            val fixed = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm", Locale.getDefault())
+            return fixed.format(default.parse(date))
+        }
+        return "-"
+    }
+
 }

@@ -2,6 +2,7 @@ package com.bncc.habith.data.repository
 
 import com.bncc.habith.data.remote.network.api.ApiClient
 import com.bncc.habith.data.remote.response.HabithResponse
+import com.bncc.habith.data.remote.response.HabithResponse2
 import com.bncc.habith.data.remote.response.UserResponse
 import javax.inject.Inject
 
@@ -28,7 +29,7 @@ class HabithRepositoryImpl @Inject constructor(
         return request.body
     }
 
-    override suspend fun createHabith(data: HabithResponse): HabithResponse? {
+    override suspend fun createHabith(data: HabithResponse2.Data): HabithResponse2? {
         val request = api.createHabith(data)
 
         if (!request.isSuccessful) return null
