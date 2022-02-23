@@ -9,8 +9,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bncc.habith.data.repository.HabithRepositoryImpl
 import com.bncc.habith.data.remote.response.HabithResponse
-import com.bncc.habith.util.UserPref
+import com.bncc.habith.ui.state.LiveDataStatus
+import com.bncc.habith.ui.state.MutableLiveDataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,8 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AllViewModel @Inject constructor(
-    private val repository: HabithRepositoryImpl,
-    private val pref: UserPref
+    private val repo: HabithRepositoryImpl
 ) : ViewModel() {
 
     private val c = Calendar.getInstance()
@@ -29,18 +30,25 @@ class AllViewModel @Inject constructor(
 
     private var formattedDate = df.format(c.time)
 
-    private val habithLiveData = MutableLiveData<List<HabithResponse>>()
-
     private val dateLiveData = MutableLiveData(formattedDate)
 
-    fun fetchHabith() {
-        viewModelScope.launch {
-            val response = repository.getHabithAll(pref.getToken()!!)
+    private val _habithLiveData = MutableLiveDataStatus<List<HabithResponse.Data>>()
 
-            if (response.success)
-                habithLiveData.value = response.data!!
+    fun fetchHabith() = viewModelScope.launch {
+        _habithLiveData.postLoading()
+        try {
+            val response = repo.getHabithAll()
+            delay(1500)
+
+            if (response!!.data.isNullOrEmpty()) _habithLiveData.postEmpty()
+            else _habithLiveData.postSuccess(response.data!!)
+
+        } catch (e: Exception) {
+            _habithLiveData.postError(e)
         }
     }
+
+    fun getHabith(): LiveDataStatus<List<HabithResponse.Data>> = _habithLiveData
 
     fun pickDate(context: Context) {
         val newYear = c.get(Calendar.YEAR)
@@ -63,8 +71,6 @@ class AllViewModel @Inject constructor(
 
         dateLiveData.value = formattedDate
     }
-
-    fun getHabith(): LiveData<List<HabithResponse>> = habithLiveData
 
     fun getDate(): LiveData<String> = dateLiveData
 }

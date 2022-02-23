@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
-import com.bncc.habith.R
 import com.bncc.habith.databinding.ActivityLoginBinding
+import com.bncc.habith.ui.state.DataStatus
 import com.bncc.habith.ui.view.home.HomeActivity
 import com.bncc.habith.ui.view.register.RegisterActivity
 import com.bncc.habith.util.InputHelper.inputIsEmpty
@@ -23,8 +22,36 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         initBinding()
+        initView()
         setupInput()
+        initObserver()
 
+    }
+
+    private fun initObserver() {
+        viewModel.viewState().observe(this) {
+            binding.viewState = it.status
+            when (it.status) {
+                DataStatus.Status.SUCCESS -> {
+                    startActivity(Intent(this, HomeActivity::class.java))
+                    finish()
+                }
+                DataStatus.Status.EMPTY -> Toast.makeText(
+                    this,
+                    "Invalid username or password!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                DataStatus.Status.ERROR -> Toast.makeText(
+                    this,
+                    it.error.toString(),
+                    Toast.LENGTH_SHORT
+                ).show()
+                else -> {/*do nothing!*/}
+            }
+        }
+    }
+
+    private fun initView() {
         binding.buttonLogin.setOnClickListener {
             if (!inputIsEmpty(binding.editTextUsername, binding.inputLayoutUsername, this)
                 && !inputIsEmpty(binding.editTextPassword, binding.inputLayoutPassword, this)
@@ -32,22 +59,11 @@ class LoginActivity : AppCompatActivity() {
                 val username = binding.editTextUsername.text.toString()
                 val password = binding.editTextPassword.text.toString()
                 viewModel.login(username, password)
-                showLoading()
             }
         }
 
         binding.textRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
-        }
-
-        viewModel.getIsSuccess().observe(this){
-            if (it){
-                startActivity(Intent(this, HomeActivity::class.java))
-                finish()
-            }else{
-                hideLoading()
-                Toast.makeText(this, R.string.auth_not_matches, Toast.LENGTH_SHORT).show()
-            }
         }
     }
 
@@ -68,17 +84,6 @@ class LoginActivity : AppCompatActivity() {
     private fun initBinding() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        hideLoading()
-    }
-
-    private fun hideLoading() = with(binding){
-        buttonLogin.isEnabled = true
-        loading.isVisible = false
-    }
-
-    private fun showLoading() = with(binding){
-        buttonLogin.isEnabled = false
-        loading.isVisible = true
     }
 
 }

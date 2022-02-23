@@ -1,10 +1,23 @@
 package com.bncc.habith.ui.view.addedit
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.bncc.habith.data.remote.response.HabithResponse2
+import com.bncc.habith.data.repository.HabithRepository
+import com.bncc.habith.ui.state.LiveDataStatus
+import com.bncc.habith.ui.state.MutableLiveDataStatus
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import java.lang.Exception
+import javax.inject.Inject
 
-class AddEditViewModel : ViewModel() {
+@HiltViewModel
+class AddEditViewModel @Inject constructor(
+    private val repo: HabithRepository
+): ViewModel() {
     private val showDatePicker: MutableLiveData<Boolean> = MutableLiveData()
     private val showTimePicker: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -25,7 +38,7 @@ class AddEditViewModel : ViewModel() {
     }
 
     fun onTimeSelected(newValue: String, isTypeStart: Boolean) {
-        dateTimeStr += ", $newValue"
+        dateTimeStr += " $newValue"
         if (isTypeStart)
             setStartDateTime.value = dateTimeStr
         else
@@ -41,6 +54,22 @@ class AddEditViewModel : ViewModel() {
         dateTimeStr = ""
         timeStr = ""
     }
+
+    private val _viewState = MutableLiveDataStatus<HabithResponse2>()
+
+    fun create(data: HabithResponse2.Data) = viewModelScope.launch {
+        _viewState.postLoading()
+        try {
+            val response = repo.createHabith(data)
+
+            if(response!!.success) _viewState.postSuccess(response)
+            else _viewState.postEmpty()
+        }catch (e: Exception){
+            _viewState.postError(e)
+        }
+    }
+
+    fun viewState(): LiveDataStatus<HabithResponse2> = _viewState
 
     fun doShowDatePicker(): LiveData<Boolean> = showDatePicker
     fun doShowTimePicker(): LiveData<Boolean> = showTimePicker

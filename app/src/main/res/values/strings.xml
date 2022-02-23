@@ -85,4 +85,28 @@
     <string name="repeat_on">Repeat on…</string>
     <string name="add_time">Add Time</string>
     <string name="set_reminder">Set Reminder</string>
+    <string name="label_setting">Setting</string>
+    <string name="label_image_profile_list">image-profile</string>
+    <string name="label_update_detail_profile">Update profile</string>
+    <string name="label_update_detail_password">Update password</string>
+    <string name="re_password_label">Repeat Password</string>
+    <string name="new_password_label">New Password</string>
+    <string name="old_password_label">Old Password</string>
+    <string name="label_account">Account</string>
+    <string name="label_image_profile">image-profile</string>
+    <string name="msg_data_not_found">Data not found!</string>
+    <string name="msg_no_connection">Your connection is lost!</string>
+    <string name="msg_fetching">Fetching data, please wait..</string>
+
+    <string-array name="profile_texts">
+        <item>Edit Profile</item>
+        <item>Edit Password</item>
+        <item>Logout</item>
+    </string-array>
+
+    <string-array name="profile_images">
+        <item>@drawable/ic_profile</item>
+        <item>@drawable/ic_password</item>
+        <item>@drawable/ic_logout</item>
+    </string-array>
 </resources>
