@@ -7,6 +7,7 @@ import com.bncc.habith.data.repository.HabithRepositoryImpl
 import com.bncc.habith.ui.state.LiveDataStatus
 import com.bncc.habith.ui.state.MutableLiveDataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,6 +23,8 @@ class UpdateProfileViewModel @Inject constructor(
             _viewState.postLoading()
             try {
                 val response = repo.updateUserDetail(name)
+                delay(1500)
+
                 if (response!!.success)
                     _viewState.postSuccess(response)
 

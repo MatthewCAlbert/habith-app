@@ -8,6 +8,7 @@ import com.bncc.habith.domain.usecase.SetTokenUseCase
 import com.bncc.habith.ui.state.LiveDataStatus
 import com.bncc.habith.ui.state.MutableLiveDataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,6 +25,7 @@ class RegisterViewModel @Inject constructor(
             _viewState.postLoading()
             try {
                 val response = interactor.toRegister(name, email, password, username)
+                delay(1500)
 
                 if (response == null) {
                     _viewState.postEmpty()

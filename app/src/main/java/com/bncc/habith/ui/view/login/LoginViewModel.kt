@@ -13,6 +13,7 @@ import com.bncc.habith.ui.state.LiveDataStatus
 import com.bncc.habith.ui.state.MutableLiveDataStatus
 import com.bncc.habith.util.UserPref
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,6 +29,7 @@ class LoginViewModel @Inject constructor(
         _viewState.postLoading()
         try {
             val response = interactor.toLogin(username, password)
+            delay(1500)
 
             if (response == null) {
                 _viewState.postEmpty()

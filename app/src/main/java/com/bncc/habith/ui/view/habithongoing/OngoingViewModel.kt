@@ -8,6 +8,7 @@ import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.ui.state.LiveDataStatus
 import com.bncc.habith.ui.state.MutableLiveDataStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,6 +23,7 @@ class OngoingViewModel @Inject constructor(
         _habithLiveData.postLoading()
         try {
             val response = repo.getHabithOngoing()
+            delay(1500)
 
             if (response!!.data.isNullOrEmpty()) _habithLiveData.postEmpty()
             else _habithLiveData.postSuccess(response.data!!)

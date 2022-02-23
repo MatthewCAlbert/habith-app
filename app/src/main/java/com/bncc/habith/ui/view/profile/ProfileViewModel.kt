@@ -14,6 +14,7 @@ import com.bncc.habith.ui.state.LiveDataStatus
 import com.bncc.habith.ui.state.MutableLiveDataStatus
 import com.bncc.habith.util.UserPref
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -30,6 +31,7 @@ class ProfileViewModel @Inject constructor(
             _userDetail.postLoading()
             try {
                 val response = interactor.toDetail()
+                delay(1500)
 
                 if (response!!.success) {
                     _userDetail.postSuccess(response.data)
