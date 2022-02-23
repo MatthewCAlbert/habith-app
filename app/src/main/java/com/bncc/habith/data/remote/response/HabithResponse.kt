@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class HabithResponse(
     val success: Boolean,
     val message: String,
-    val data: List<Data>
+    val data: List<Data>?
 ): Parcelable {
     @Parcelize
     data class Data(

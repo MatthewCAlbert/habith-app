@@ -1,243 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/paper_white"
-    tools:context=".ui.view.detail.DetailActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/tv_habitName"
+    <data>
+
+        <variable
+            name="viewState"
+            type="com.bncc.habith.ui.state.DataStatus.Status" />
+
+        <import type="android.view.View" />
+
+        <import type="com.bncc.habith.ui.state.DataStatus.Status" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/lato_bold"
-        android:text="@string/habit_name_detail"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/paper_white"
+        tools:context=".ui.view.detail.DetailActivity">
 
-    <TextView
-        android:id="@+id/tv_habitCats"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/lato_light"
-        android:text="@string/category"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="@id/tv_habitName"
-        app:layout_constraintStart_toStartOf="@id/tv_habitName"
-        app:layout_constraintTop_toBottomOf="@id/tv_habitName" />
+        <TextView
+            android:id="@+id/tv_habitName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/habit_name_detail"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider_dateTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:dividerColor="@color/light_gray"
-        app:dividerInsetEnd="16dp"
-        app:dividerInsetStart="16dp"
-        app:dividerThickness="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_habitCats" />
+        <TextView
+            android:id="@+id/tv_habitCats"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_light"
+            android:text="@string/category"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_habitName"
+            app:layout_constraintStart_toStartOf="@id/tv_habitName"
+            app:layout_constraintTop_toBottomOf="@id/tv_habitName" />
 
-    <TextView
-        android:id="@+id/tv_startDateTime_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:text="@string/start_date_time_detail"
-        app:layout_constraintEnd_toStartOf="@id/tv_endDateTime_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_dateTime" />
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_dateTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:dividerColor="@color/light_gray"
+            app:dividerInsetEnd="16dp"
+            app:dividerInsetStart="16dp"
+            app:dividerThickness="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_habitCats" />
 
-    <TextView
-        android:id="@+id/tv_startDateTime_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/lato_light"
-        android:text="@string/_31_01_22_13_00"
-        android:textColor="@color/light_gray"
-        app:drawableStartCompat="@drawable/calendar_ic_20"
-        app:layout_constraintEnd_toEndOf="@id/tv_startDateTime_title"
-        app:layout_constraintStart_toStartOf="@id/tv_startDateTime_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_startDateTime_title" />
+        <TextView
+            android:id="@+id/tv_startDateTime_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/start_date_time_detail"
+            app:layout_constraintEnd_toStartOf="@id/tv_endDateTime_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_dateTime" />
 
-    <TextView
-        android:id="@+id/tv_endDateTime_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/due_date_time"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tv_startDateTime_title"
-        app:layout_constraintTop_toBottomOf="@id/divider_dateTime" />
+        <TextView
+            android:id="@+id/tv_startDateTime_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/lato_light"
+            android:text="@string/_31_01_22_13_00"
+            android:textColor="@color/light_gray"
+            app:drawableStartCompat="@drawable/calendar_ic_20"
+            app:layout_constraintEnd_toEndOf="@id/tv_startDateTime_title"
+            app:layout_constraintStart_toStartOf="@id/tv_startDateTime_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_startDateTime_title" />
 
-    <TextView
-        android:id="@+id/tv_endDateTime_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:drawablePadding="8dp"
-        android:fontFamily="@font/lato_light"
-        android:text="@string/_31_01_23_13_00"
-        android:textColor="@color/light_gray"
-        app:drawableStartCompat="@drawable/calendar_ic_20"
-        app:layout_constraintEnd_toEndOf="@id/tv_endDateTime_title"
-        app:layout_constraintStart_toStartOf="@id/tv_endDateTime_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_endDateTime_title" />
+        <TextView
+            android:id="@+id/tv_endDateTime_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/due_date_time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_startDateTime_title"
+            app:layout_constraintTop_toBottomOf="@id/divider_dateTime" />
 
-    <TextView
-        android:id="@+id/tv_reminder_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/reminder_detail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_startDateTime_value" />
+        <TextView
+            android:id="@+id/tv_endDateTime_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:drawablePadding="8dp"
+            android:fontFamily="@font/lato_light"
+            android:text="@string/_31_01_23_13_00"
+            android:textColor="@color/light_gray"
+            app:drawableStartCompat="@drawable/calendar_ic_20"
+            app:layout_constraintEnd_toEndOf="@id/tv_endDateTime_title"
+            app:layout_constraintStart_toStartOf="@id/tv_endDateTime_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_endDateTime_title" />
 
-    <TextView
-        android:id="@+id/tv_reminder_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/lato_light"
-        android:text="@string/every_mon_tue_wed_thu_fri_on_14_00"
-        android:textColor="@color/light_gray"
-        app:layout_constraintEnd_toEndOf="@id/tv_reminder_title"
-        app:layout_constraintStart_toStartOf="@id/tv_reminder_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_reminder_title" />
+        <TextView
+            android:id="@+id/tv_reminder_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/reminder_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_startDateTime_value" />
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider_desc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:dividerColor="@color/light_gray"
-        app:dividerInsetEnd="16dp"
-        app:dividerInsetStart="16dp"
-        app:dividerThickness="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_reminder_value" />
+        <TextView
+            android:id="@+id/tv_reminder_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_light"
+            android:text="@string/every_mon_tue_wed_thu_fri_on_14_00"
+            android:textColor="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="@id/tv_reminder_title"
+            app:layout_constraintStart_toStartOf="@id/tv_reminder_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_reminder_title" />
 
-    <TextView
-        android:id="@+id/tv_desc_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/description_detail"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider_desc" />
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:dividerColor="@color/light_gray"
+            app:dividerInsetEnd="16dp"
+            app:dividerInsetStart="16dp"
+            app:dividerThickness="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_reminder_value" />
 
-    <TextView
-        android:id="@+id/tv_desc_value"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:fontFamily="@font/lato_light"
-        android:maxLines="10"
-        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_donec_mattis_dolor_nec_velit_bibendum_ultrices_in_nec_finibus_metus_nunc_ipsum_sem_volutpat_id_consectetur_sed_tempor_ac_tortor_sed_volutpat_tincidunt_lectus_sit_amet_ullamcorper_nisi_egestas_vel_quisque_posuere_interdum_mollis_nam_non_libero_viverra_auctor_mi_sed_tempor_ex_nam_in_est_id_augue_ullamcorper_dapibus_ut_sed_mollis_velit_eget_tincidunt_dui_cras_at_ultrices_lectus_cras_porta_sollicitudin_velit_sed_consectetur_dui_pharetra_vitae_nam_ac_vehicula_quam_nulla_fringilla_enim_et_semper_venenatis_orci_varius_natoque_penatibus_et_magnis_dis_parturient_montes_nascetur_ridiculus_mus_praesent_tristique_suscipit_sem_ut_accumsan_arcu_ornare_eget"
-        android:textColor="@color/light_gray"
-        app:layout_constraintEnd_toEndOf="@id/tv_desc_title"
-        app:layout_constraintStart_toStartOf="@id/tv_desc_title"
-        app:layout_constraintTop_toBottomOf="@id/tv_desc_title" />
+        <TextView
+            android:id="@+id/tv_desc_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/description_detail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider_desc" />
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider_target"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="16dp"
-        app:dividerColor="@color/light_gray"
-        app:dividerInsetEnd="16dp"
-        app:dividerInsetStart="16dp"
-        app:dividerThickness="1dp"
-        app:layout_constraintBottom_toTopOf="@id/tv_target_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_desc_value" />
+        <TextView
+            android:id="@+id/tv_desc_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/lato_light"
+            android:maxLines="10"
+            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_donec_mattis_dolor_nec_velit_bibendum_ultrices_in_nec_finibus_metus_nunc_ipsum_sem_volutpat_id_consectetur_sed_tempor_ac_tortor_sed_volutpat_tincidunt_lectus_sit_amet_ullamcorper_nisi_egestas_vel_quisque_posuere_interdum_mollis_nam_non_libero_viverra_auctor_mi_sed_tempor_ex_nam_in_est_id_augue_ullamcorper_dapibus_ut_sed_mollis_velit_eget_tincidunt_dui_cras_at_ultrices_lectus_cras_porta_sollicitudin_velit_sed_consectetur_dui_pharetra_vitae_nam_ac_vehicula_quam_nulla_fringilla_enim_et_semper_venenatis_orci_varius_natoque_penatibus_et_magnis_dis_parturient_montes_nascetur_ridiculus_mus_praesent_tristique_suscipit_sem_ut_accumsan_arcu_ornare_eget"
+            android:textColor="@color/light_gray"
+            app:layout_constraintEnd_toEndOf="@id/tv_desc_title"
+            app:layout_constraintStart_toStartOf="@id/tv_desc_title"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_title" />
 
-    <TextView
-        android:id="@+id/tv_target_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:text="@string/target_progress"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/et_layout_targetNum"
-        app:layout_constraintStart_toStartOf="parent" />
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_target"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            app:dividerColor="@color/light_gray"
+            app:dividerInsetEnd="16dp"
+            app:dividerInsetStart="16dp"
+            app:dividerThickness="1dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_target_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc_value" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_targetMinus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60sp"
-        android:layout_marginBottom="80dp"
-        android:paddingVertical="12dp"
-        android:text="@string/minus"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@id/btn_doneHabit"
-        app:layout_constraintEnd_toStartOf="@id/et_layout_targetNum"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/tv_target_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:text="@string/target_progress"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/et_layout_targetNum"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/et_layout_targetNum"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_doneHabit"
-        app:layout_constraintEnd_toStartOf="@id/btn_targetPlus"
-        app:layout_constraintStart_toEndOf="@id/btn_targetMinus">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_targetNum"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_targetMinus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:textSize="40sp" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginStart="60sp"
+            android:layout_marginBottom="80dp"
+            android:paddingVertical="12dp"
+            android:text="@string/minus"
+            android:visibility="@{viewState != Status.LOADING ? View.VISIBLE : View.GONE}"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_doneHabit"
+            app:layout_constraintEnd_toStartOf="@id/et_layout_targetNum"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_targetPlus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="80dp"
-        android:paddingVertical="12dp"
-        android:text="@string/plus"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@id/btn_doneHabit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/et_layout_targetNum" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_layout_targetNum"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="80dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_doneHabit"
+            app:layout_constraintEnd_toStartOf="@id/btn_targetPlus"
+            app:layout_constraintStart_toEndOf="@id/btn_targetMinus">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_doneHabit"
-        style="@style/PrimaryButton.Rounded.Padded"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/done"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_actionHabit"
-        app:layout_constraintStart_toStartOf="parent" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_targetNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="40sp" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_actionHabit"
-        style="@style/PrimaryButton.Rounded.Padded"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/brown"
-        android:text="@string/detail_end_habit"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_targetPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="80dp"
+            android:paddingVertical="12dp"
+            android:text="@string/plus"
+            android:visibility="@{viewState != Status.LOADING ? View.VISIBLE : View.GONE}"
+            android:textSize="40sp"
+            app:layout_constraintBottom_toTopOf="@id/btn_doneHabit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/et_layout_targetNum" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_doneHabit"
+            style="@style/PrimaryButton.Rounded.Padded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="@string/done"
+            android:visibility="@{viewState != Status.LOADING ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@id/btn_actionHabit"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_actionHabit"
+            style="@style/PrimaryButton.Rounded.Padded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/brown"
+            android:visibility="@{viewState != Status.LOADING ? View.VISIBLE : View.GONE}"
+            android:text="@string/detail_end_habit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/loading"
+            layout="@layout/layout_loading"
+            android:visibility="@{viewState == Status.LOADING ? View.VISIBLE : View.GONE}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

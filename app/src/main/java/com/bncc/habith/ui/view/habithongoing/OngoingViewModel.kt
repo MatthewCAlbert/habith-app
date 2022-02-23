@@ -24,7 +24,7 @@ class OngoingViewModel @Inject constructor(
             val response = repo.getHabithOngoing()
 
             if (response!!.data.isNullOrEmpty()) _habithLiveData.postEmpty()
-            else _habithLiveData.postSuccess(response.data)
+            else _habithLiveData.postSuccess(response.data!!)
 
         } catch (e: Exception) {
             _habithLiveData.postError(e)

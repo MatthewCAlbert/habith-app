@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi
 import com.bncc.habith.R
 import com.bncc.habith.data.remote.response.HabithResponse
 import com.bncc.habith.databinding.ActivityDetailBinding
+import com.bncc.habith.ui.state.DataStatus
 import com.bncc.habith.ui.view.addedit.AddEditActivity
 import com.bncc.habith.util.InputHelper.fixedDate
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,16 +31,26 @@ class DetailActivity : AppCompatActivity() {
         initBinding()
         getHabitFromIntent()
         setupView()
+        initObserver()
+    }
+
+    private fun initObserver() {
+        viewModel.viewState().observe(this){
+            detailBinding.viewState = it.status
+            when(it.status){
+                DataStatus.Status.SUCCESS -> {
+                    Toast.makeText(this, "Habit ended!", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+                DataStatus.Status.ERROR -> Toast.makeText(this, "Remove Failed!", Toast.LENGTH_SHORT).show()
+                else -> {}
+            }
+        }
     }
 
     private fun initBinding() {
         detailBinding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(detailBinding.root)
-
-        viewModel.isSuccess().observe(this){
-            if (it)
-                finish()
-        }
     }
 
     private fun setupView() {
@@ -53,12 +64,11 @@ class DetailActivity : AppCompatActivity() {
 
         detailBinding.btnDoneHabit.setOnClickListener {
             Toast.makeText(this, "Habit done for the day. Nice!", Toast.LENGTH_SHORT).show()
-//            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         }
         detailBinding.btnActionHabit.setOnClickListener {
-            viewModel.deleteHabith(extras.id!!)
+            viewModel.remove(extras.id!!)
             if (detailBinding.btnActionHabit.text == getString(R.string.detail_end_habit)) {
-                Toast.makeText(this, "Habit ended!", Toast.LENGTH_SHORT).show()
                 detailBinding.btnActionHabit.text = getString(R.string.detail_start_habit)
             } else {
                 Toast.makeText(this, "Habit started!", Toast.LENGTH_SHORT).show()
