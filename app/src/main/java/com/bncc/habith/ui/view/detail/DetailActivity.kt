@@ -49,7 +49,6 @@ class DetailActivity : AppCompatActivity() {
 
         detailBinding.btnDoneHabit.setOnClickListener {
             Toast.makeText(this, "Habit done for the day. Nice!", Toast.LENGTH_SHORT).show()
-//            startActivity(Intent(this, HomeActivity::class.java))
         }
         detailBinding.btnActionHabit.setOnClickListener {
             viewModel.deleteHabith(extras.id!!)
